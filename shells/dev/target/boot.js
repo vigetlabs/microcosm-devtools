@@ -42,7 +42,7 @@ class App extends Presenter {
   render() {
     return (
       <main>
-        <h1>Microcosm Dev Tools Test Bed</h1>
+        <h1>This is a test</h1>
         <p>Count: {this.model.count}</p>
         <footer>
           <ActionButton action={SUB} value={1}>Down</ActionButton>
