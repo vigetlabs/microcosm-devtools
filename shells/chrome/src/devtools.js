@@ -1,17 +1,17 @@
-// this script is called when the VueDevtools panel is activated.
+/**
+ * @fileoverview This script is called when the dev tools panel is activated.
+ */
 
 import { initDevTools } from 'src/devtools'
 import Bridge from 'src/bridge'
 
 initDevTools({
-
   /**
    * Inject backend, connect to background, and send back the bridge.
    *
    * @param {Function} cb
    */
-
-  connect (cb) {
+  connect(cb) {
     // 1. inject backend code into page
     injectScript(chrome.runtime.getURL('build/backend.js'), () => {
       // 2. connect to background to setup proxy
@@ -24,10 +24,10 @@ initDevTools({
       })
 
       const bridge = new Bridge({
-        listen (fn) {
+        listen(fn) {
           port.onMessage.addListener(fn)
         },
-        send (data) {
+        send(data) {
           if (!disconnected) {
             port.postMessage(data)
           }
@@ -43,8 +43,7 @@ initDevTools({
    *
    * @param {Function} reloadFn
    */
-
-  onReload (reloadFn) {
+  onReload(reloadFn) {
     chrome.devtools.network.onNavigated.addListener(reloadFn)
   }
 })
@@ -56,15 +55,14 @@ initDevTools({
  * @param {String} scriptName
  * @param {Function} cb
  */
-
-function injectScript (scriptName, cb) {
+function injectScript(scriptName, cb) {
   const src = `
     var script = document.constructor.prototype.createElement.call(document, 'script');
     script.src = "${scriptName}";
     document.documentElement.appendChild(script);
     script.parentNode.removeChild(script);
   `
-  chrome.devtools.inspectedWindow.eval(src, function (res, err) {
+  chrome.devtools.inspectedWindow.eval(src, function(res, err) {
     if (err) {
       console.log(err)
     }

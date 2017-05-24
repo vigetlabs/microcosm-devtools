@@ -9,27 +9,27 @@
  * @param {Window} window
  */
 
-export function installHook (window) {
+export function installHook(window) {
   let listeners = {}
 
   const hook = {
-    Vue: null,
+    repo: null,
 
-    on (event, fn) {
+    on(event, fn) {
       event = '$' + event
       ;(listeners[event] || (listeners[event] = [])).push(fn)
     },
 
-    once (event, fn) {
+    once(event, fn) {
       event = '$' + event
-      function on () {
+      function on() {
         this.off(event, on)
         fn.apply(this, arguments)
       }
       ;(listeners[event] || (listeners[event] = [])).push(on)
     },
 
-    off (event, fn) {
+    off(event, fn) {
       event = '$' + event
       if (!arguments.length) {
         listeners = {}
@@ -51,7 +51,7 @@ export function installHook (window) {
       }
     },
 
-    emit (event) {
+    emit(event) {
       event = '$' + event
       let cbs = listeners[event]
       if (cbs) {
@@ -64,16 +64,12 @@ export function installHook (window) {
     }
   }
 
-  hook.once('init', Vue => {
-    hook.Vue = Vue
+  hook.once('init', repo => {
+    hook.repo = repo
   })
 
-  hook.once('vuex:init', store => {
-    hook.store = store
-  })
-
-  Object.defineProperty(window, '__VUE_DEVTOOLS_GLOBAL_HOOK__', {
-    get () {
+  Object.defineProperty(window, '__MICROCOSM_DEVTOOLS_GLOBAL_HOOK__', {
+    get() {
       return hook
     }
   })

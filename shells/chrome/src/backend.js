@@ -1,4 +1,6 @@
-// this is injected to the app page when the panel is activated.
+/**
+ * @fileoverview This is injected to the app page when the panel is activated.
+ */
 
 import { initBackend } from 'src/backend'
 import Bridge from 'src/bridge'
@@ -6,14 +8,14 @@ import Bridge from 'src/bridge'
 window.addEventListener('message', handshake)
 
 function handshake (e) {
-  if (e.data.source === 'vue-devtools-proxy' && e.data.payload === 'init') {
+  if (e.data.source === 'microcosm-devtools-proxy' && e.data.payload === 'init') {
     window.removeEventListener('message', handshake)
 
     let listeners = []
     const bridge = new Bridge({
       listen (fn) {
         var listener = evt => {
-          if (evt.data.source === 'vue-devtools-proxy' && evt.data.payload) {
+          if (evt.data.source === 'microcosm-devtools-proxy' && evt.data.payload) {
             fn(evt.data.payload)
           }
         }
@@ -22,7 +24,7 @@ function handshake (e) {
       },
       send (data) {
         window.postMessage({
-          source: 'vue-devtools-backend',
+          source: 'microcosm-devtools-backend',
           payload: data
         }, '*')
       }

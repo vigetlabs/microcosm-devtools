@@ -1,4 +1,3 @@
-var path = require('path')
 var webpack = require('webpack')
 var alias = require('../alias')
 
@@ -19,7 +18,7 @@ module.exports = {
   },
   output: {
     path: __dirname + '/build',
-    filename: '[name].js',
+    filename: '[name].js'
   },
   resolve: {
     alias
@@ -28,30 +27,28 @@ module.exports = {
     rules: [
       {
         test: /\.js$/,
-        loader:  'buble-loader',
-        exclude: /node_modules|vue\/dist|vuex\/dist/,
-        options: bubleOptions
-      },
-      {
-        test: /\.vue$/,
-        loader: 'vue-loader',
-        options: {
-          preserveWhitespace: false,
-          buble: bubleOptions
-        }
+        exclude: /node_modules/,
+        use: [{ loader: 'buble-loader', options: bubleOptions }]
       },
       {
         test: /\.(png|woff2)$/,
-        loader: 'url-loader?limit=0'
+        use: [
+          {
+            loader: 'url-loader',
+            options: { limit: 0 }
+          }
+        ]
+      },
+      {
+        test: /\.css/,
+        use: ['style-loader', 'css-loader']
       }
     ]
   },
   performance: {
     hints: false
   },
-  devtool: process.env.NODE_ENV !== 'production'
-    ? '#inline-source-map'
-    : false
+  devtool: process.env.NODE_ENV !== 'production' ? '#inline-source-map' : false
 }
 
 if (process.env.NODE_ENV === 'production') {

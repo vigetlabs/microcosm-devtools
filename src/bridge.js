@@ -1,10 +1,12 @@
 import { EventEmitter } from 'events'
 
 export default class Bridge extends EventEmitter {
-  constructor (wall) {
+  constructor(wall) {
     super()
+
     this.setMaxListeners(Infinity)
     this.wall = wall
+
     wall.listen(message => {
       if (typeof message === 'string') {
         this.emit(message)
@@ -14,27 +16,14 @@ export default class Bridge extends EventEmitter {
     })
   }
 
-  /**
-   * Send an event.
-   *
-   * @param {String} event
-   * @param {*} payload
-   */
-
-  send (event, payload) {
+  send(event, payload) {
     this.wall.send({
       event,
       payload
     })
   }
 
-  /**
-   * Log a message to the devtools background page.
-   *
-   * @param {String} message
-   */
-
-  log (message) {
+  log(message) {
     this.send('log', message)
   }
 }

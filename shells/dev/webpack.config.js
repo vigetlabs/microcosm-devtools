@@ -1,5 +1,3 @@
-var path = require('path')
-var webpack = require('webpack')
 var alias = require('../alias')
 var FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
 
@@ -18,32 +16,30 @@ module.exports = {
   output: {
     path: __dirname + '/build',
     publicPath: '/build/',
-    filename: '[name].js',
+    filename: '[name].js'
   },
   resolve: {
-    alias: Object.assign({}, alias, {
-      vue$: 'vue/dist/vue.common.js'
-    })
+    alias: alias
   },
   module: {
     rules: [
       {
         test: /\.js$/,
-        loader:  'buble-loader',
-        exclude: /node_modules|vue\/dist|vuex\/dist/,
-        options: bubleOptions
-      },
-      {
-        test: /\.vue$/,
-        loader: 'vue-loader',
-        options: {
-          preserveWhitespace: false,
-          buble: bubleOptions
-        }
+        exclude: /node_modules/,
+        use: [{ loader: 'buble-loader', options: bubleOptions }]
       },
       {
         test: /\.(png|woff2)$/,
-        loader: 'url-loader?limit=0'
+        use: [
+          {
+            loader: 'url-loader',
+            options: { limit: 0 }
+          }
+        ]
+      },
+      {
+        test: /\.css/,
+        use: ['style-loader', 'css-loader']
       }
     ]
   },
@@ -54,7 +50,5 @@ module.exports = {
   devServer: {
     quiet: true
   },
-  plugins: [
-    new FriendlyErrorsPlugin()
-  ]
+  plugins: [new FriendlyErrorsPlugin()]
 }

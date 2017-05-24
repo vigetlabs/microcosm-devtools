@@ -1,5 +1,7 @@
-// the background script runs all the time and serves as a central message
-// hub for each vue devtools (panel + proxy + backend) instance.
+/**
+ * @fileoverview The background script runs all the time and serves as a central message
+ * hub for each microcosm devtools (panel + proxy + backend) instance.
+ */
 
 const ports = {}
 
@@ -75,7 +77,7 @@ function doublePipe (id, one, two) {
 }
 
 chrome.runtime.onMessage.addListener((req, sender) => {
-  if (sender.tab && req.vueDetected) {
+  if (sender.tab && req.microcosmDetected) {
     chrome.browserAction.setIcon({
       tabId: sender.tab.id,
       path: {

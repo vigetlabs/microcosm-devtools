@@ -1,4 +1,4 @@
-// shared alias for all shells
+// Shared alias for all shells
 const path = require('path')
 
 module.exports = {

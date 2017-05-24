@@ -1,0 +1,28 @@
+body {
+
+}
+
+#app {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 25px;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+.tree-container {
+  align-items: center;
+  background: #334;
+  display: flex;
+  height: 100%;
+  overflow: auto;
+  width: 100%;
+}
+
+.tree {
+  background: #334;
+  display: block;
+  margin: 0 auto;
+}

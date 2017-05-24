@@ -1,48 +1,50 @@
 import CircularJSON from 'circular-json-es6'
 
-function cached (fn) {
+function cached(fn) {
   const cache = Object.create(null)
-  return function cachedFn (str) {
+  return function cachedFn(str) {
     const hit = cache[str]
     return hit || (cache[str] = fn(str))
   }
 }
 
 var classifyRE = /(?:^|[-_/])(\w)/g
-export const classify = cached((str) => {
+export const classify = cached(str => {
   return str.replace(classifyRE, toUpper)
 })
 
 const camelizeRE = /-(\w)/g
-export const camelize = cached((str) => {
+export const camelize = cached(str => {
   return str.replace(camelizeRE, toUpper)
 })
 
-function toUpper (_, c) {
+function toUpper(_, c) {
   return c ? c.toUpperCase() : ''
 }
 
-export function inDoc (node) {
+export function inDoc(node) {
   if (!node) return false
   var doc = node.ownerDocument.documentElement
   var parent = node.parentNode
-  return doc === node ||
+  return (
+    doc === node ||
     doc === parent ||
-    !!(parent && parent.nodeType === 1 && (doc.contains(parent)))
+    !!(parent && parent.nodeType === 1 && doc.contains(parent))
+  )
 }
 
 /**
  * Stringify/parse data using CircularJSON.
  */
 
-export const UNDEFINED = '__vue_devtool_undefined__'
-export const INFINITY = '__vue_devtool_infinity__'
+export const UNDEFINED = '__microcosm_devtool_undefined__'
+export const INFINITY = '__microcosm_devtool_infinity__'
 
-export function stringify (data) {
+export function stringify(data) {
   return CircularJSON.stringify(data, replacer)
 }
 
-function replacer (key, val) {
+function replacer(key, val) {
   if (val === undefined) {
     return UNDEFINED
   } else if (val === Infinity) {
@@ -52,13 +54,11 @@ function replacer (key, val) {
   }
 }
 
-export function parse (data, revive) {
-  return revive
-    ? CircularJSON.parse(data, reviver)
-    : CircularJSON.parse(data)
+export function parse(data, revive) {
+  return revive ? CircularJSON.parse(data, reviver) : CircularJSON.parse(data)
 }
 
-function reviver (key, val) {
+function reviver(key, val) {
   if (val === UNDEFINED) {
     return undefined
   } else if (val === INFINITY) {
@@ -77,12 +77,8 @@ function reviver (key, val) {
  * @return {*}
  */
 
-function sanitize (data) {
-  if (
-    !isPrimitive(data) &&
-    !Array.isArray(data) &&
-    !isPlainObject(data)
-  ) {
+function sanitize(data) {
+  if (!isPrimitive(data) && !Array.isArray(data) && !isPlainObject(data)) {
     // handle types that will probably cause issues in
     // the structured clone
     return Object.prototype.toString.call(data)
@@ -91,11 +87,11 @@ function sanitize (data) {
   }
 }
 
-export function isPlainObject (obj) {
+export function isPlainObject(obj) {
   return Object.prototype.toString.call(obj) === '[object Object]'
 }
 
-function isPrimitive (data) {
+function isPrimitive(data) {
   if (data == null) {
     return true
   }
@@ -108,7 +104,7 @@ function isPrimitive (data) {
   )
 }
 
-export function searchDeepInObject (obj, searchTerm) {
+export function searchDeepInObject(obj, searchTerm) {
   var match = false
   const keys = Object.keys(obj)
   for (let i = 0; i < keys.length; i++) {
@@ -128,17 +124,22 @@ export function searchDeepInObject (obj, searchTerm) {
   return match
 }
 
-function compare (mixedValue, stringValue) {
-  if (Array.isArray(mixedValue) && searchInArray(mixedValue, stringValue.toLowerCase())) {
+function compare(mixedValue, stringValue) {
+  if (
+    Array.isArray(mixedValue) &&
+    searchInArray(mixedValue, stringValue.toLowerCase())
+  ) {
     return true
   }
-  if (('' + mixedValue).toLowerCase().indexOf(stringValue.toLowerCase()) !== -1) {
+  if (
+    ('' + mixedValue).toLowerCase().indexOf(stringValue.toLowerCase()) !== -1
+  ) {
     return true
   }
   return false
 }
 
-function searchInArray (arr, searchTerm) {
+function searchInArray(arr, searchTerm) {
   let found = false
   for (let i = 0; i < arr.length; i++) {
     if (('' + arr[i]).toLowerCase().indexOf(searchTerm) !== -1) {

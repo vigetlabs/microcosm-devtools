@@ -1,29 +1,21 @@
+/**
+ * @fileoverview This is how the dev tools detect Microcosm.
+ * @todo This will always fire. How can we be smarter about enabling the plugin?
+ */
+
 window.addEventListener('message', e => {
-  if (e.source === window && e.data.vueDetected) {
+  if (e.source === window && e.data.microcosmDetected) {
     chrome.runtime.sendMessage(e.data)
   }
 })
 
-function detect (win) {
+function detect(win) {
+  // TODO: Poll until we detect a Microcosm. We need a check here.
   setTimeout(() => {
-    const all = document.querySelectorAll('*')
-    let el
-    for (let i = 0; i < all.length; i++) {
-      if (all[i].__vue__) {
-        el = all[i]
-        break
-      }
-    }
-    if (el) {
-      let Vue = Object.getPrototypeOf(el.__vue__).constructor
-      while (Vue.super) {
-        Vue = Vue.super
-      }
-      win.postMessage({
-        devtoolsEnabled: Vue.config.devtools,
-        vueDetected: true
-      }, '*')
-    }
+    win.postMessage({
+      devtoolsEnabled: true,
+      microcosmDetected: true
+    }, '*')
   }, 100)
 }
 
