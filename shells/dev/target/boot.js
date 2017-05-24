@@ -1,6 +1,6 @@
 import React from 'react'
 import DOM from 'react-dom'
-import Microcosm, { update } from 'microcosm'
+import Microcosm from 'microcosm'
 import Presenter from 'microcosm/addons/presenter'
 import ActionButton from 'microcosm/addons/action-button'
 
