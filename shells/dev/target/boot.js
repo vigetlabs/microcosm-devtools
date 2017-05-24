@@ -14,12 +14,12 @@ class Repo extends Microcosm {
         return 0
       },
 
-      add(state, n) {
-        return update(state, 'count', value => value + n)
+      add(count, n) {
+        return count + n
       },
 
-      subtract(state, n) {
-        return this.add(state, -n)
+      subtract(count, n) {
+        return count - n
       },
 
       register() {
