@@ -10,7 +10,7 @@ function fill({ status }) {
       return '#fe4'
     case 'resolve':
       return '#7f9'
-    case 'error':
+    case 'reject':
       return '#f55'
     case 'cancelled':
       return '#445'

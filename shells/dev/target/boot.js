@@ -7,6 +7,18 @@ import ActionButton from 'microcosm/addons/action-button'
 const ADD = 'ADD'
 const SUB = 'SUBTRACT'
 
+function eventuallyAdd(fail) {
+  let payload = fail ? new Error('sorry') : 1
+
+  return action => {
+    action.open()
+
+    setTimeout(() => {
+      fail ? action.reject(payload) : action.resolve(payload)
+    }, 1000)
+  }
+}
+
 class Repo extends Microcosm {
   setup() {
     this.addDomain('count', {
@@ -25,6 +37,7 @@ class Repo extends Microcosm {
       register() {
         return {
           [ADD]: this.add,
+          [eventuallyAdd]: this.add,
           [SUB]: this.subtract
         }
       }
@@ -47,6 +60,14 @@ class App extends Presenter {
         <footer>
           <ActionButton action={SUB} value={1}>Down</ActionButton>
           <ActionButton action={ADD} value={1}>Up</ActionButton>
+
+          <button onClick={() => this.send(eventuallyAdd)}>
+            Eventually Add
+          </button>
+
+          <button onClick={() => this.send(eventuallyAdd, true)}>
+            Eventually Fail
+          </button>
         </footer>
       </main>
     )
