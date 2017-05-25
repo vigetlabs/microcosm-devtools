@@ -4,10 +4,12 @@ export function trackHistory(hook, bridge) {
 
   history.on('append', action => {
     bridge.on(`toggle:${action.id}`, () => history.toggle(action))
+    bridge.on(`remove:${action.id}`, () => history.remove(action))
   })
 
   history.on('remove', action => {
     bridge.removeAllListeners(`toggle:${action.id}`)
+    bridge.removeAllListeners(`remove:${action.id}`)
   })
 
   history.on('reconcile', function() {

@@ -38,6 +38,10 @@ function Node({ action, x, y, send }) {
       <text y="-5" onClick={() => send('toggle', action.id)}>
         Toggle
       </text>
+
+      <text y="-20" onClick={() => send('remove', action.id)}>
+        Remove
+      </text>
     </g>
   )
 }
