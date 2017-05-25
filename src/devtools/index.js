@@ -1,24 +1,13 @@
 import DOM from 'react-dom'
 import React from 'react'
-import Tree from './tree'
+import Repo from './repo'
+import Application from './presenters/application'
 
 import './style.css'
 
 export function connectBridge(bridge) {
-  window.bridge = bridge
+  let repo = new Repo({ bridge })
+  let el = document.getElementById('app')
 
-  bridge.once('ready', version => {
-    console.log('Dev tools are ready.')
-  })
-
-  bridge.once('proxy-fail', () => {
-    console.error('Proxy injection failed.')
-  })
-
-  bridge.on('history:reconcile', function(history) {
-    DOM.render(
-      <Tree history={JSON.parse(history)} />,
-      document.getElementById('app')
-    )
-  })
+  DOM.render(<Application repo={repo} />, el)
 }
