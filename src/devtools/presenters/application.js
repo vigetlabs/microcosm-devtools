@@ -1,6 +1,6 @@
 import React from 'react'
 import Presenter from 'microcosm/addons/presenter'
-import Tree from '../views/tree'
+import Layout from '../views/layout'
 
 class Application extends Presenter {
   getModel() {
@@ -12,7 +12,7 @@ class Application extends Presenter {
   render() {
     const { history } = this.model
 
-    return <Tree history={history} />
+    return <Layout history={history} />
   }
 }
 
