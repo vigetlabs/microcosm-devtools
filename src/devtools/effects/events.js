@@ -3,6 +3,7 @@
  */
 
 import { updateHistory } from '../actions/history'
+import { updateSnapshot } from '../actions/snapshot'
 
 class Events {
   setup(repo, { bridge }) {
@@ -17,9 +18,10 @@ class Events {
     })
 
     bridge.on('history:reconcile', repo.prepare(updateHistory))
+    bridge.on('history:release', repo.prepare(updateSnapshot))
   }
 
-  teardown () {
+  teardown() {
     this.bridge.removeAllListeners()
   }
 }

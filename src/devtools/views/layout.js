@@ -1,9 +1,10 @@
 import React from 'react'
 import Tree from './tree'
+import JSONTree from 'react-json-tree'
 
 class Layout extends React.Component {
   render() {
-    const { history } = this.props
+    const { history, snapshot } = this.props
 
     return (
       <div className="app-container">
@@ -13,6 +14,7 @@ class Layout extends React.Component {
 
         <main className="app-main">
           <Tree history={history} />
+          <JSONTree data={snapshot} />
         </main>
       </div>
     )

@@ -5,14 +5,15 @@ import Layout from '../views/layout'
 class Application extends Presenter {
   getModel() {
     return {
-      history: state => state.history
+      history: state => state.history,
+      snapshot: state => state.snapshot
     }
   }
 
   render() {
-    const { history } = this.model
+    const { history, snapshot } = this.model
 
-    return <Layout history={history} />
+    return <Layout history={history} snapshot={snapshot} />
   }
 }
 

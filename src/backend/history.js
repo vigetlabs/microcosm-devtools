@@ -1,12 +1,11 @@
 export function trackHistory(hook, bridge) {
   const repo = hook.repo
-  const getSnapshot = () => JSON.stringify(repo.history)
 
-  // Deal with multiple backend injections
-  hook.off('history:reconcile')
+  repo.history.on('reconcile', function() {
+    bridge.send('history:reconcile', JSON.stringify(repo.history))
+  })
 
-  // application -> devtool
-  hook.on('history:reconcile', mutation => {
-    bridge.send('history:reconcile', getSnapshot())
+  repo.history.on('release', function() {
+    bridge.send('history:release', JSON.stringify(repo.state))
   })
 }

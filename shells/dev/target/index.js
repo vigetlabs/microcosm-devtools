@@ -7,7 +7,3 @@ let hook = window.__MICROCOSM_DEVTOOLS_GLOBAL_HOOK__
 hook.repo = repo
 
 hook.emit('init', repo)
-
-repo.history.on('reconcile', function() {
-  hook.emit('history:reconcile')
-})
