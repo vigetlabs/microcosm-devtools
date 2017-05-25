@@ -15,7 +15,7 @@ function eventuallyAdd(fail) {
 
     setTimeout(() => {
       fail ? action.reject(payload) : action.resolve(payload)
-    }, 1000)
+    }, 700 + Math.random() * 700)
   }
 }
 
