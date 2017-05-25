@@ -24,6 +24,16 @@ class Events {
   teardown() {
     this.bridge.removeAllListeners()
   }
+
+  toggle(repo, id) {
+    this.bridge.send(`toggle:${id}`)
+  }
+
+  register() {
+    return {
+      ['toggle']: this.toggle
+    }
+  }
 }
 
 export default Events

@@ -1,4 +1,5 @@
 import React from 'react'
+import withSend from 'microcosm/addons/with-send'
 
 function fill({ status }) {
   switch (status) {
@@ -17,14 +18,25 @@ function fill({ status }) {
   }
 }
 
-export default function Node({ action, x, y }) {
+function Node({ action, x, y, send }) {
   return (
     <g transform={`translate(${x},${y})`}>
       <circle r="10" opacity="0" />
       <circle r="3" fill={fill(action)} />
 
-      <text y="5" x="8" fontSize="11" textAnchor="start" fill="white" transform="rotate(45)">
+      <text
+        y="5"
+        x="8"
+        fontSize="12"
+        textAnchor="start"
+        fill={action.disabled ? 'gray' : 'white'}
+        transform="rotate(45)"
+      >
         {action.type}
+      </text>
+
+      <text y="-5" onClick={() => send('toggle', action.id)}>
+        Toggle
       </text>
     </g>
   )
@@ -34,3 +46,5 @@ Node.defaultProps = {
   x: 0,
   y: 0
 }
+
+export default withSend(Node)
