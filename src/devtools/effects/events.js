@@ -33,10 +33,16 @@ class Events {
     this.bridge.send(`remove:${id}`)
   }
 
+  checkout(repo, id) {
+    console.log('sending checkout:', id)
+    this.bridge.send(`checkout:${id}`)
+  }
+
   register() {
     return {
       ['toggle']: this.toggle,
-      ['remove']: this.remove
+      ['remove']: this.remove,
+      ['checkout']: this.checkout
     }
   }
 }

@@ -42,6 +42,10 @@ function Node({ action, x, y, send }) {
       <text y="-20" onClick={() => send('remove', action.id)}>
         Remove
       </text>
+
+      <text y="-35" onClick={() => send('checkout', action.id)}>
+        Checkout
+      </text>
     </g>
   )
 }
