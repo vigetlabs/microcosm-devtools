@@ -23,7 +23,7 @@ export default function Node({ action, x, y }) {
       <circle r="10" opacity="0" />
       <circle r="3" fill={fill(action)} />
 
-      <text dy="-18" fontSize="11" textAnchor="middle" fill="white">
+      <text y="5" x="8" fontSize="11" textAnchor="start" fill="white" transform="rotate(45)">
         {action.type}
       </text>
     </g>
