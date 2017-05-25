@@ -29,9 +29,14 @@ class Events {
     this.bridge.send(`toggle:${id}`)
   }
 
+  remove(repo, id) {
+    this.bridge.send(`remove:${id}`)
+  }
+
   register() {
     return {
-      ['toggle']: this.toggle
+      ['toggle']: this.toggle,
+      ['remove']: this.remove
     }
   }
 }
