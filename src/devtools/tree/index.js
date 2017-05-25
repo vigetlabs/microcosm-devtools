@@ -11,7 +11,7 @@ class TreeVisual extends React.Component {
     const { height, padX, padY } = this.props
 
     return Tree({
-      data: history.root,
+      data: history.tree,
       height: height - padY * 2,
       width: this.width - padX * 2
     })
