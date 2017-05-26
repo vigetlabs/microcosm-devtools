@@ -13,7 +13,7 @@
 }
 
 .left-rail {
+  flex-basis: 25%;
   flex-shrink: 0;
   min-width: 200px;
-  flex-basis: 25%;
 }
