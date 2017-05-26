@@ -12,8 +12,9 @@
   height: 100%;
 }
 
-.left-rail {
+.rail {
   flex-basis: 25%;
   flex-shrink: 0;
   min-width: 200px;
+  max-width: 320px;
 }
