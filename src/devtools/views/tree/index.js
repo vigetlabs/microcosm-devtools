@@ -9,7 +9,7 @@ class TreeVisual extends React.Component {
   }
 
   getTree(history) {
-    const { height, padX } = this.props
+    const { height } = this.props
 
     return Tree({
       data: history.tree,
@@ -32,7 +32,7 @@ class TreeVisual extends React.Component {
     const { history, height } = this.props
 
     // Leave plenty of room for labels
-    let width = this.width + 100
+    let width = this.width + 200
 
     return (
       <div className={css.container}>
@@ -48,12 +48,12 @@ class TreeVisual extends React.Component {
   }
 
   renderTree() {
-    const { history, padX } = this.props
+    const { history } = this.props
 
     let tree = this.getTree(history)
 
     return (
-      <g transform={`translate(${padX},-10)`}>
+      <g transform={`translate(0,-10)`}>
         <g fill="none" stroke="rgba(125, 225, 255, 0.4)">
           {tree.curves.map(this.getCurve)}
         </g>
@@ -64,7 +64,6 @@ class TreeVisual extends React.Component {
 }
 
 TreeVisual.defaultProps = {
-  padX: 40,
   height: 400,
   width: 350
 }
