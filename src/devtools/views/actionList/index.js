@@ -1,16 +1,20 @@
 import React from 'react'
-import css from './actionList.css'
 import Item from './item'
+import css from './actionList.css'
 
 class ActionList extends React.Component {
+  renderItem(action) {
+    let { head } = this.props.history
+
+    return <Item action={action} head={head} key={action.id} />
+  }
+
   render() {
-    let { list, head } = this.props.history
+    let { list } = this.props.history
 
     return (
       <div className={css.container}>
-        {list.map(action => (
-          <Item action={action} head={head} key={action.id} />
-        ))}
+        {list.map(this.renderItem, this)}
       </div>
     )
   }

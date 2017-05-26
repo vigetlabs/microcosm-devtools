@@ -1,19 +1,17 @@
 import React from 'react'
-import css from './actionList.css'
-import humanize from '../../utils/humanize'
+import classNames from 'classnames'
 import ActionButton from 'microcosm/addons/action-button'
+import humanize from '../../utils/humanize'
+import css from './actionList.css'
 
 class ActionListItem extends React.Component {
   itemClass() {
     let { action, head } = this.props
 
-    if (action.id == head) {
-      return css.enabledHead
-    } else if (action.disabled) {
-      return css.disabled
-    } else {
-      return css.enabled
-    }
+    return classNames({
+      [css.head]: action.id == head,
+      [css.disabled]: action.disabled
+    })
   }
 
   render() {
@@ -24,6 +22,7 @@ class ActionListItem extends React.Component {
         <span className={this.itemClass()}>
           {humanize(action.type)}
         </span>
+
         <span className={css.actions}>
           <ActionButton
             action="checkout"
@@ -33,6 +32,7 @@ class ActionListItem extends React.Component {
           >
             checkout
           </ActionButton>
+
           <ActionButton
             action="toggle"
             value={action.id}
@@ -41,6 +41,7 @@ class ActionListItem extends React.Component {
           >
             toggle
           </ActionButton>
+
           <ActionButton
             action="remove"
             value={action.id}

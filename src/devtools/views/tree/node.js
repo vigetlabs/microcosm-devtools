@@ -36,9 +36,8 @@ export default function Node({ action, x, y, index, head }) {
         y={offsetY}
         fontSize="14"
         textAnchor="start"
-        fill={
-          action.id == head ? '#ffeca4' : action.disabled ? 'gray' : 'white'
-        }
+        fill={action.id == head ? '#ffeca4' : '#eee'}
+        opacity={action.disabled ? '.5' : '1'}
         dominantBaseline="middle"
       >
         {humanize(action.type)}
