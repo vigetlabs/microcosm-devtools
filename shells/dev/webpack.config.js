@@ -1,11 +1,6 @@
 var alias = require('../alias')
 var FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
 
-var bubleOptions = {
-  target: { chrome: 52 },
-  objectAssign: 'Object.assign'
-}
-
 module.exports = {
   entry: {
     devtools: './src/devtools.js',
@@ -26,7 +21,7 @@ module.exports = {
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        use: [{ loader: 'buble-loader', options: bubleOptions }]
+        use: [{ loader: 'babel-loader' }]
       },
       {
         test: /\.(png|woff2)$/,
@@ -39,7 +34,20 @@ module.exports = {
       },
       {
         test: /\.css/,
-        use: ['style-loader', 'css-loader']
+        use: [
+          {
+            loader: 'style-loader'
+          },
+          {
+            loader: 'css-loader',
+            options: {
+              sourceMap: true,
+              modules: true,
+              camelCase: true,
+              localIdentName: '[name]-[local]-[hash:base64:5]'
+            }
+          }
+        ]
       }
     ]
   },

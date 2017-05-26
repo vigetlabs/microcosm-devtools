@@ -18,7 +18,9 @@ function fill({ status }) {
   }
 }
 
-function Node({ action, x, y, send }) {
+function Node({ action, x, y, send, index }) {
+  let rotation = index % 2 ? 45 : -45
+
   return (
     <g transform={`translate(${x},${y})`}>
       <circle r="10" opacity="0" />
@@ -30,7 +32,7 @@ function Node({ action, x, y, send }) {
         fontSize="12"
         textAnchor="start"
         fill={action.disabled ? 'gray' : 'white'}
-        transform="rotate(45)"
+        transform={`rotate(${rotation})`}
       >
         {action.type}
       </text>
