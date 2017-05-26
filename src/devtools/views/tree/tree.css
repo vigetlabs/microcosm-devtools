@@ -7,4 +7,5 @@
 .graphic {
   display: block;
   margin: 0 auto;
+  overflow: visible;
 }

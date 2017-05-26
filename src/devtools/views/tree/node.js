@@ -18,23 +18,37 @@ function fill({ status }) {
   }
 }
 
-function Node({ action, x, y, send, index }) {
-  let rotation = index % 2 ? 45 : -45
+function humanize(type) {
+  let [title, id] = type.split('.', 2)
+
+  // Remove "$" in front of system Microcosm actions
+  title = title.replace(/^\$/, '')
+
+  return title
+}
+
+function Node({ action, x, y, index }) {
+  let offsetY = index % 2 ? 30 : -30
+  let offsetX = 20
+  let color = fill(action)
 
   return (
     <g transform={`translate(${x},${y})`}>
       <circle r="10" opacity="0" />
-      <circle r="3" fill={fill(action)} />
+      <circle r="4" fill={color} />
+
+      <line x2={offsetX} y2={offsetY} stroke={color} />
+      <circle cx={offsetX} cy={offsetY} r="3" fill={color} />
 
       <text
-        y="5"
-        x="8"
-        fontSize="12"
+        x={offsetX + 8}
+        y={offsetY}
+        fontSize="14"
         textAnchor="start"
         fill={action.disabled ? 'gray' : 'white'}
-        transform={`rotate(${rotation})`}
+        dominantBaseline="middle"
       >
-        {action.type}
+        {humanize(action.type)}
       </text>
 
       <text y="-5" onClick={() => send('toggle', action.id)}>
