@@ -1,0 +1,19 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: auto;
+  width: 100%;
+}
+
+.body {
+  display: flex;
+  flex-grow: 1;
+  height: 100%;
+}
+
+.left-rail {
+  flex-basis: 25%;
+  flex-shrink: 0;
+  min-width: 200px;
+}

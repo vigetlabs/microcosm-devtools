@@ -1,10 +1,12 @@
 .container {
   background: #25253a;
   overflow: auto;
+  padding: 0 40px;
   width: 100%;
 }
 
 .graphic {
   display: block;
   margin: 0 auto;
+  overflow: visible;
 }
