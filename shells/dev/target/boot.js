@@ -43,6 +43,13 @@ class Repo extends Microcosm {
       }
     })
   }
+
+  seed() {
+    this.push(increase, 1)
+    this.push(increase, 1)
+    this.push(increase, 1)
+    this.push(increase, 1)
+  }
 }
 
 class App extends Presenter {

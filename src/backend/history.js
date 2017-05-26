@@ -22,6 +22,6 @@ export function trackHistory(hook, bridge) {
     bridge.send('history:release', JSON.stringify(repo.state))
   })
 
-  // Force a reconciliation
-  history.checkout()
+  // Run some seed data
+  repo.seed()
 }
