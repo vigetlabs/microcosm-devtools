@@ -5,7 +5,7 @@ function fill({ status }) {
     case 'inactive':
       return '#ccc'
     case 'open':
-      return '#e39'
+      return '#fe4'
     case 'update':
       return '#fe4'
     case 'resolve':

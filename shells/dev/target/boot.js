@@ -4,10 +4,10 @@ import Microcosm from 'microcosm'
 import Presenter from 'microcosm/addons/presenter'
 import ActionButton from 'microcosm/addons/action-button'
 
-const ADD = 'ADD'
-const SUB = 'SUBTRACT'
+const increase = 'increase'
+const decrease = 'decrease'
 
-function eventuallyAdd(fail) {
+function eventuallyIncrease(fail) {
   let payload = fail ? new Error('sorry') : 1
 
   return action => {
@@ -36,9 +36,9 @@ class Repo extends Microcosm {
 
       register() {
         return {
-          [ADD]: this.add,
-          [eventuallyAdd]: this.add,
-          [SUB]: this.subtract
+          [increase]: this.add,
+          [eventuallyIncrease]: this.add,
+          [decrease]: this.subtract
         }
       }
     })
@@ -58,14 +58,14 @@ class App extends Presenter {
         <h1>This is a test</h1>
         <p>Count: {this.model.count}</p>
         <footer>
-          <ActionButton action={SUB} value={1}>Down</ActionButton>
-          <ActionButton action={ADD} value={1}>Up</ActionButton>
+          <ActionButton action={decrease} value={1}>Down</ActionButton>
+          <ActionButton action={increase} value={1}>Up</ActionButton>
 
-          <button onClick={() => this.send(eventuallyAdd)}>
+          <button onClick={() => this.send(eventuallyIncrease)}>
             Eventually Add
           </button>
 
-          <button onClick={() => this.send(eventuallyAdd, true)}>
+          <button onClick={() => this.send(eventuallyIncrease, true)}>
             Eventually Fail
           </button>
         </footer>
