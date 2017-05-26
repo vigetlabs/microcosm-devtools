@@ -6,7 +6,8 @@ class History {
       size: 0,
       head: null,
       root: null,
-      tree: {}
+      tree: {},
+      list: []
     }
   }
 

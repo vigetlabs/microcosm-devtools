@@ -1,5 +1,4 @@
 import React from 'react'
-import DOM from 'react-dom'
 import Tree from 'paths-js/tree'
 import Node from './node'
 import css from './tree.css'

@@ -1,5 +1,5 @@
 import React from 'react'
-import withSend from 'microcosm/addons/with-send'
+import humanize from '../../utils/humanize'
 
 function fill({ status }) {
   switch (status) {
@@ -18,16 +18,7 @@ function fill({ status }) {
   }
 }
 
-function humanize(type) {
-  let [title, id] = type.split('.', 2)
-
-  // Remove "$" in front of system Microcosm actions
-  title = title.replace(/^\$/, '')
-
-  return title
-}
-
-function Node({ action, x, y, index, send }) {
+export default function Node({ action, x, y, index }) {
   let offsetY = index % 2 ? 30 : -30
   let offsetX = 20
   let color = fill(action)
@@ -50,18 +41,6 @@ function Node({ action, x, y, index, send }) {
       >
         {humanize(action.type)}
       </text>
-
-      <text y="-5" onClick={() => send('toggle', action.id)}>
-        Toggle
-      </text>
-
-      <text y="-20" onClick={() => send('remove', action.id)}>
-        Remove
-      </text>
-
-      <text y="-35" onClick={() => send('checkout', action.id)}>
-        Checkout
-      </text>
     </g>
   )
 }
@@ -70,5 +49,3 @@ Node.defaultProps = {
   x: 0,
   y: 0
 }
-
-export default withSend(Node)

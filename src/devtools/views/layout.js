@@ -1,6 +1,7 @@
 import React from 'react'
 import Snapshot from './snapshot'
 import Tree from './tree'
+import ActionList from './actionList'
 import Header from './header'
 import css from './layout.css'
 
@@ -25,7 +26,7 @@ class Layout extends React.Component {
 
     return (
       <div className={css.rail}>
-        Action stuff will go here
+        <ActionList history={this.props.history} />
       </div>
     )
   }

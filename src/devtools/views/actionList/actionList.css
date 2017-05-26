@@ -1,0 +1,43 @@
+.container {
+  background: #2a3346;
+  border-right: 1px solid #888;
+}
+
+.item {
+  align-items: center;
+  border-bottom: 1px solid #888;
+  color: #eee;
+  display: flex;
+  height: 69px;
+  justify-content: space-between;
+  padding-left: 10px;
+}
+
+.enabled {
+  color: #eee;
+}
+
+.disabled {
+  color: #555;
+}
+
+.actions {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: space-between;
+}
+
+.action {
+  cursor: pointer;
+  font-size: 12px;
+  height: 32%;
+  margin: 0 10px;
+  text-align: center;
+  width: 100%;
+}
+
+.action:hover {
+  background-color: #423f65;
+}
