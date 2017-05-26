@@ -32,7 +32,7 @@ export default function Node({ action, x, y, index }) {
   let color = fill(action)
 
   return (
-    <g transform={`translate(${x},${y})`}>
+    <g id={'node-' + action.id} transform={`translate(${x},${y})`}>
       <circle r="10" opacity="0" />
       <circle r="4" fill={color} />
 
