@@ -1,11 +1,25 @@
 import React from 'react'
+import DOM from 'react-dom'
 import Tree from 'paths-js/tree'
 import Node from './node'
 import css from './tree.css'
 
 class TreeVisual extends React.Component {
+  static defaultProps = {
+    height: 400,
+    width: 350
+  }
+
   get width() {
     return this.props.width + this.props.history.size * 60
+  }
+
+  componentDidUpdate(component) {
+    let active = document.querySelector('#node-' + this.props.history.head)
+
+    if (active) {
+      active.scrollIntoView(true, { behavior: 'smooth', block: 'end' })
+    }
   }
 
   getTree(history) {
@@ -23,6 +37,8 @@ class TreeVisual extends React.Component {
   }
 
   getNode({ point, item }, i) {
+    const { history } = this.props
+
     let [x = 0, y = 0] = point
 
     return <Node key={i} index={i} x={x} y={y} action={item} />
@@ -57,15 +73,10 @@ class TreeVisual extends React.Component {
         <g fill="none" stroke="rgba(125, 225, 255, 0.4)">
           {tree.curves.map(this.getCurve)}
         </g>
-        {tree.nodes.map(this.getNode)}
+        {tree.nodes.map(this.getNode, this)}
       </g>
     )
   }
-}
-
-TreeVisual.defaultProps = {
-  height: 400,
-  width: 350
 }
 
 export default TreeVisual
