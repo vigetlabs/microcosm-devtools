@@ -16,8 +16,8 @@
 .title {
   font-size: 10px;
   font-weight: 500;
+  letter-spacing: 0.12em;
   line-height: 16px;
   margin: 0;
   text-transform: uppercase;
-  letter-spacing: 0.12em;
 }
