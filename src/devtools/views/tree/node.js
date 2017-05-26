@@ -27,7 +27,7 @@ function humanize(type) {
   return title
 }
 
-function Node({ action, x, y, index }) {
+function Node({ action, x, y, index, send }) {
   let offsetY = index % 2 ? 30 : -30
   let offsetX = 20
   let color = fill(action)
