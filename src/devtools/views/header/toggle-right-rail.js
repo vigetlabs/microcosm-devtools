@@ -17,7 +17,7 @@ export default function ToggleRightRail({ onClick, active }) {
             fill="none"
             strokeWidth="1"
           />
-          <rect x="15" y="4" width="3" height="7" stroke="none" />
+          <rect x="14" y="4" width="3" height="7" stroke="none" />
         </g>
       </svg>
     </button>
