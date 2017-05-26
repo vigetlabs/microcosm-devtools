@@ -13,12 +13,16 @@
   padding-left: 10px;
 }
 
+.enabledHead {
+  color: #ffeca4;
+}
+
 .enabled {
   color: #eee;
 }
 
 .disabled {
-  color: #555;
+  color: #777;
 }
 
 .actions {

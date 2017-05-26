@@ -4,12 +4,24 @@ import humanize from '../../utils/humanize'
 import ActionButton from 'microcosm/addons/action-button'
 
 class ActionListItem extends React.Component {
+  itemClass() {
+    let { action, head } = this.props
+
+    if (action.id == head) {
+      return css.enabledHead
+    } else if (action.disabled) {
+      return css.disabled
+    } else {
+      return css.enabled
+    }
+  }
+
   render() {
     let { action } = this.props
 
     return (
       <div key={action.id} className={css.item}>
-        <span className={action.disabled ? css.disabled : css.enabled}>
+        <span className={this.itemClass()}>
           {humanize(action.type)}
         </span>
         <span className={css.actions}>

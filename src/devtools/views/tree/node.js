@@ -18,7 +18,7 @@ function fill({ status }) {
   }
 }
 
-export default function Node({ action, x, y, index }) {
+export default function Node({ action, x, y, index, head }) {
   let offsetY = index % 2 ? 30 : -30
   let offsetX = 20
   let color = fill(action)
@@ -36,7 +36,9 @@ export default function Node({ action, x, y, index }) {
         y={offsetY}
         fontSize="14"
         textAnchor="start"
-        fill={action.disabled ? 'gray' : 'white'}
+        fill={
+          action.id == head ? '#ffeca4' : action.disabled ? 'gray' : 'white'
+        }
         dominantBaseline="middle"
       >
         {humanize(action.type)}

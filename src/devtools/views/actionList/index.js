@@ -4,11 +4,11 @@ import Item from './item'
 
 class ActionList extends React.Component {
   render() {
-    let { list } = this.props.history
+    let { list, head } = this.props.history
 
     return (
       <div className={css.container}>
-        {list.map(action => <Item action={action} />)}
+        {list.map(action => <Item action={action} head={head} />)}
       </div>
     )
   }

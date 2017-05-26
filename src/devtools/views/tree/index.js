@@ -36,11 +36,11 @@ class TreeVisual extends React.Component {
   }
 
   getNode({ point, item }, i) {
-    const { history } = this.props
+    const { head } = this.props.history
 
     let [x = 0, y = 0] = point
 
-    return <Node key={i} index={i} x={x} y={y} action={item} />
+    return <Node key={i} index={i} x={x} y={y} action={item} head={head} />
   }
 
   render() {
