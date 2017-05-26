@@ -14,7 +14,7 @@ class TreeVisual extends React.Component {
     return Tree({
       data: history.tree,
       height: height,
-      width: this.width - padX * 2
+      width: this.width
     })
   }
 
@@ -31,9 +31,12 @@ class TreeVisual extends React.Component {
   render() {
     const { history, height } = this.props
 
+    // Leave plenty of room for labels
+    let width = this.width + 100
+
     return (
       <div className={css.container}>
-        <svg className={css.graphic} width={this.width} height={height}>
+        <svg className={css.graphic} width={width} height={height}>
           {history.size > 0 ? this.renderTree() : this.renderEmpty()}
         </svg>
       </div>
@@ -51,7 +54,7 @@ class TreeVisual extends React.Component {
 
     return (
       <g transform={`translate(${padX},-10)`}>
-        <g fill="none" stroke="rgba(125, 225, 255, 0.2)">
+        <g fill="none" stroke="rgba(125, 225, 255, 0.4)">
           {tree.curves.map(this.getCurve)}
         </g>
         {tree.nodes.map(this.getNode)}

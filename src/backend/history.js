@@ -8,4 +8,6 @@ export function trackHistory(hook, bridge) {
   repo.history.on('release', function() {
     bridge.send('history:release', JSON.stringify(repo.state))
   })
+
+  repo.history.checkout()
 }
