@@ -11,8 +11,18 @@ class History {
     }
   }
 
-  reset(_old, next) {
-    return next
+  reset(_old, newHistory) {
+    let list = []
+    let cursor = newHistory.tree
+
+    while (cursor) {
+      list.push(cursor)
+      cursor = cursor.children.find(child => {
+        return child.id === cursor.next
+      })
+    }
+
+    return { ...newHistory, list }
   }
 
   register() {

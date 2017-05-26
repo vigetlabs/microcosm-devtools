@@ -8,7 +8,9 @@ class ActionList extends React.Component {
 
     return (
       <div className={css.container}>
-        {list.map(action => <Item action={action} head={head} />)}
+        {list.map(action => (
+          <Item action={action} head={head} key={action.id} />
+        ))}
       </div>
     )
   }

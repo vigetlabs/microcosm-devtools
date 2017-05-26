@@ -20,7 +20,7 @@ class ActionListItem extends React.Component {
     let { action } = this.props
 
     return (
-      <div key={action.id} className={css.item}>
+      <div className={css.item}>
         <span className={this.itemClass()}>
           {humanize(action.type)}
         </span>
