@@ -34,7 +34,6 @@ class Events {
   }
 
   checkout(repo, id) {
-    console.log('sending checkout:', id)
     this.bridge.send(`checkout:${id}`)
   }
 
