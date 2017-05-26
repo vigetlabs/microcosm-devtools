@@ -1,18 +1,19 @@
-import Node from './node'
 import React from 'react'
 import Tree from 'paths-js/tree'
+import Node from './node'
+import css from './tree.css'
 
 class TreeVisual extends React.Component {
   get width() {
-    return this.props.width + this.props.history.size * 40
+    return this.props.width + this.props.history.size * 60
   }
 
   getTree(history) {
-    const { height, padX, padY } = this.props
+    const { height, padX } = this.props
 
     return Tree({
       data: history.tree,
-      height: height - padY * 2,
+      height: height,
       width: this.width - padX * 2
     })
   }
@@ -24,15 +25,15 @@ class TreeVisual extends React.Component {
   getNode({ point, item }, i) {
     let [x = 0, y = 0] = point
 
-    return <Node key={i} x={x} y={y} action={item} />
+    return <Node key={i} index={i} x={x} y={y} action={item} />
   }
 
   render() {
     const { history, height } = this.props
 
     return (
-      <div className="tree-container">
-        <svg className="tree" width={this.width} height={height}>
+      <div className={css.container}>
+        <svg className={css.graphic} width={this.width} height={height}>
           {history.size > 0 ? this.renderTree() : this.renderEmpty()}
         </svg>
       </div>
@@ -44,12 +45,12 @@ class TreeVisual extends React.Component {
   }
 
   renderTree() {
-    const { history, padX, padY } = this.props
+    const { history, padX } = this.props
 
     let tree = this.getTree(history)
 
     return (
-      <g transform={`translate(${padX},${padY})`}>
+      <g transform={`translate(${padX},-10)`}>
         <g fill="none" stroke="rgba(125, 225, 255, 0.2)">
           {tree.curves.map(this.getCurve)}
         </g>
@@ -61,8 +62,7 @@ class TreeVisual extends React.Component {
 
 TreeVisual.defaultProps = {
   padX: 40,
-  padY: 40,
-  height: 200,
+  height: 400,
   width: 350
 }
 
