@@ -24,6 +24,27 @@ class Events {
   teardown() {
     this.bridge.removeAllListeners()
   }
+
+  toggle(repo, id) {
+    this.bridge.send(`toggle:${id}`)
+  }
+
+  remove(repo, id) {
+    this.bridge.send(`remove:${id}`)
+  }
+
+  checkout(repo, id) {
+    console.log('sending checkout:', id)
+    this.bridge.send(`checkout:${id}`)
+  }
+
+  register() {
+    return {
+      ['toggle']: this.toggle,
+      ['remove']: this.remove,
+      ['checkout']: this.checkout
+    }
+  }
 }
 
 export default Events
