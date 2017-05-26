@@ -6,11 +6,16 @@ import css from './layout.css'
 
 class Layout extends React.Component {
   state = {
-    leftRail: true
+    leftRail: true,
+    rightRail: true
   }
 
   onLeftRail = event => {
     this.setState({ leftRail: !this.state.leftRail })
+  }
+
+  onRightRail = event => {
+    this.setState({ rightRail: !this.state.rightRail })
   }
 
   renderLeftRail() {
@@ -19,7 +24,19 @@ class Layout extends React.Component {
     }
 
     return (
-      <div className={css.leftRail}>
+      <div className={css.rail}>
+        Action stuff will go here
+      </div>
+    )
+  }
+
+  renderRightRail() {
+    if (!this.state.rightRail) {
+      return null
+    }
+
+    return (
+      <div className={css.rail}>
         <Snapshot data={this.props.snapshot} />
       </div>
     )
@@ -27,18 +44,26 @@ class Layout extends React.Component {
 
   render() {
     const { history, snapshot } = this.props
-    const { leftRail } = this.state
+    const { leftRail, rightRail } = this.state
 
     let status = `${history.size} Actions`
 
     return (
       <div className={css.container}>
-        <Header status={status} leftRail={leftRail} onLeftRail={this.onLeftRail} />
+        <Header
+          status={status}
+          leftRail={leftRail}
+          onLeftRail={this.onLeftRail}
+          rightRail={rightRail}
+          onRightRail={this.onRightRail}
+        />
 
         <main className={css.body}>
           {this.renderLeftRail()}
 
           <Tree history={history} />
+
+          {this.renderRightRail()}
         </main>
       </div>
     )
