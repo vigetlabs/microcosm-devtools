@@ -37,11 +37,21 @@ class Events {
     this.bridge.send(`checkout:${id}`)
   }
 
+  revert(repo) {
+    this.bridge.send(`revert`)
+  }
+
+  commit(repo) {
+    this.bridge.send(`commit`)
+  }
+
   register() {
     return {
       ['toggle']: this.toggle,
       ['remove']: this.remove,
-      ['checkout']: this.checkout
+      ['checkout']: this.checkout,
+      ['revert']: this.revert,
+      ['commit']: this.commit
     }
   }
 }

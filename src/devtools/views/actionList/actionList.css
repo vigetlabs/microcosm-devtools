@@ -1,12 +1,39 @@
 .container {
   background: #2a3346;
   border-right: 1px solid #888;
+  color: #eee;
+  position: relative;
+  height: 100%;
+}
+
+.stickyBar {
+  background: #2c2c40;
+  border-bottom: 1px solid #888;
+  display: flex;
+  width: 100%;
+  height: 30px;
+  line-height: 30px;
+}
+
+.stickyItem {
+  border: 1px solid #888;
+  cursor: pointer;
+  text-align: center;
+  width: 50%;
+}
+
+.stickyItem:hover {
+  background-color: #423f65;
+}
+
+.list {
+  overflow: auto;
+  height: calc(100% - 30px);
 }
 
 .item {
   align-items: center;
   border-bottom: 1px solid #888;
-  color: #eee;
   display: flex;
   height: 69px;
   justify-content: space-between;

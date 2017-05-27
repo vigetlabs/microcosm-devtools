@@ -16,6 +16,18 @@ export function trackHistory(hook, bridge) {
     })
 
     bridge.on(`checkout:${action.id}`, () => history.checkout(action))
+
+    bridge.on('revert', () => {
+      history.root.children = []
+      history.checkout(history.root)
+    })
+
+    bridge.on('commit', () => {
+      action = history.append('commit', 'resolve')
+      history.root = action
+
+      history.checkout(action)
+    })
   })
 
   history.on('remove', action => {

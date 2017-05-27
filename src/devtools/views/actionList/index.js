@@ -1,4 +1,5 @@
 import React from 'react'
+import ActionButton from 'microcosm/addons/action-button'
 import Item from './item'
 import css from './actionList.css'
 
@@ -14,7 +15,17 @@ class ActionList extends React.Component {
 
     return (
       <div className={css.container}>
-        {list.map(this.renderItem, this)}
+        <div className={css.stickyBar}>
+          <ActionButton className={css.stickyItem} action="revert" tag="div">
+            Revert
+          </ActionButton>
+          <ActionButton className={css.stickyItem} action="commit" tag="div">
+            Commit
+          </ActionButton>
+        </div>
+        <div className={css.list}>
+          {list.map(this.renderItem, this)}
+        </div>
       </div>
     )
   }
