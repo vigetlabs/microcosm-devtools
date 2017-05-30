@@ -5,12 +5,19 @@ import css from './tree.css'
 
 class TreeVisual extends React.Component {
   static defaultProps = {
-    height: 400,
-    width: 350
+    height: 250,
+    width: 350,
+    spacing: 30
   }
 
+  _width = 0
+
   get width() {
-    return this.props.width + this.props.history.size * 60
+    const { spacing, width, history } = this.props
+
+    this._width = Math.max(this._width, width + history.size * spacing)
+
+    return this._width
   }
 
   componentDidUpdate(component) {

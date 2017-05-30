@@ -8,7 +8,7 @@ class ActionListItem extends React.Component {
   itemClass() {
     let { action, head } = this.props
 
-    return classNames({
+    return classNames(css.item, {
       [css.head]: action.id == head,
       [css.disabled]: action.disabled
     })
@@ -18,8 +18,8 @@ class ActionListItem extends React.Component {
     let { action } = this.props
 
     return (
-      <div className={css.item}>
-        <span className={this.itemClass()}>
+      <div className={this.itemClass()}>
+        <span>
           {humanize(action.type)}
         </span>
 
@@ -27,28 +27,25 @@ class ActionListItem extends React.Component {
           <ActionButton
             action="checkout"
             value={action.id}
-            tag="span"
-            className={css.action}
+            className={css.checkout}
           >
-            checkout
+            <span>checkout</span>
           </ActionButton>
 
           <ActionButton
             action="toggle"
             value={action.id}
-            tag="span"
-            className={css.action}
+            className={action.disabled ? css.show : css.hide}
           >
-            toggle
+            <span>{action.disabled ? 'enable' : 'disable'}</span>
           </ActionButton>
 
           <ActionButton
             action="remove"
             value={action.id}
-            tag="span"
-            className={css.action}
+            className={css.remove}
           >
-            remove
+            <span>remove</span>
           </ActionButton>
         </span>
       </div>

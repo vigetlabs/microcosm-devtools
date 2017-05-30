@@ -22,9 +22,10 @@ export default function Node({ action, x, y, index, head }) {
   let offsetY = index % 2 ? 30 : -30
   let offsetX = 20
   let color = fill(action)
+  let opacity = action.disabled ? '0.35' : '1'
 
   return (
-    <g id={'node-' + action.id} transform={`translate(${x},${y})`}>
+    <g id={'node-' + action.id} transform={`translate(${x},${y})`} opacity={opacity}>
       <circle r="10" opacity="0" />
       <circle r="4" fill={color} />
 
@@ -34,10 +35,10 @@ export default function Node({ action, x, y, index, head }) {
       <text
         x={offsetX + 8}
         y={offsetY}
-        fontSize="14"
+        fontSize="13"
         textAnchor="start"
-        fill={action.id == head ? '#ffeca4' : '#eee'}
-        opacity={action.disabled ? '.5' : '1'}
+        fill={action.id == head ? '#fdd54d' : '#eee'}
+        letterSpacing="0.05em"
         dominantBaseline="middle"
       >
         {humanize(action.type)}

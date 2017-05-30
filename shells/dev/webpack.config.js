@@ -24,15 +24,6 @@ module.exports = {
         use: [{ loader: 'babel-loader' }]
       },
       {
-        test: /\.(png|woff2)$/,
-        use: [
-          {
-            loader: 'url-loader',
-            options: { limit: 0 }
-          }
-        ]
-      },
-      {
         test: /\.css/,
         use: [
           {
@@ -46,6 +37,15 @@ module.exports = {
               camelCase: true,
               localIdentName: '[name]-[local]-[hash:base64:5]'
             }
+          }
+        ]
+      },
+      {
+        test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2)$/,
+        use: [
+          {
+            loader: 'url-loader',
+            options: { limit: 0 }
           }
         ]
       }
