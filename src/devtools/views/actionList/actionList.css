@@ -1,33 +1,13 @@
 @import "../../style.css";
 
 .container {
-  background: #2a3346;
-  border-right: 1px solid rgba(31, 32, 47, 0.97);
+  background: #272d3c;
+  border-right: 1px solid rgb(31, 32, 47);
   display: flex;
   flex-direction: column;
   color: #eee;
   position: relative;
   height: 100%;
-}
-
-.stickyBar {
-  display: flex;
-  flex-basis: 30px;
-  height: 30px;
-  flex: 0 0;
-  line-height: 30px;
-  width: 100%;
-}
-
-.stickyItem {
-  border: 0;
-  cursor: pointer;
-  text-align: center;
-  width: 50%;
-}
-
-.stickyItem:hover {
-  background-color: #423f65;
 }
 
 .list {

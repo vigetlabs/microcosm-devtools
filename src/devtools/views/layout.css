@@ -13,6 +13,7 @@
 }
 
 .rail {
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.06);
   flex-basis: 25%;
   flex-shrink: 0;
   min-width: 200px;
