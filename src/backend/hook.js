@@ -26,7 +26,12 @@ export function installHook(window) {
         this.off(event, on)
         fn.apply(this, arguments)
       }
-      ;(listeners[event] || (listeners[event] = [])).push(on)
+
+      if (listeners[event] == null) {
+        listeners[event] = []
+      }
+
+      listeners[event].push(on)
     },
 
     off(event, fn) {

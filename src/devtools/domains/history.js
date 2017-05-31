@@ -14,6 +14,7 @@ class History {
   reset(_old, newHistory) {
     let list = []
     let cursor = newHistory.tree
+    let parent = cursor
 
     while (cursor) {
       list.push(cursor)

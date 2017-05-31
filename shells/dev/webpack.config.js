@@ -1,9 +1,14 @@
-var alias = require('../alias')
 var FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
+var alias = require('../alias')
+var webpack = require('webpack')
 
 module.exports = {
   entry: {
-    devtools: './src/devtools.js',
+    devtools: [
+      'react-hot-loader/patch',
+      'react-dev-utils/webpackHotDevClient',
+      './src/devtools.js'
+    ],
     backend: './src/backend.js',
     hook: './src/hook.js',
     target: './target/index.js'
@@ -19,9 +24,30 @@ module.exports = {
   module: {
     rules: [
       {
+        enforce: 'pre',
+        test: /\.jsx?$/,
+        include: [/src/, /shell/],
+        use: [
+          {
+            loader: 'eslint-loader',
+            options: {
+              cache: true
+            }
+          }
+        ]
+      },
+      {
         test: /\.js$/,
         exclude: /node_modules/,
-        use: [{ loader: 'babel-loader' }]
+        use: [
+          {
+            loader: 'babel-loader',
+            options: {
+              cacheDirectory: '.babel-cache',
+              plugins: ['react-hot-loader/babel']
+            }
+          }
+        ]
       },
       {
         test: /\.css/,
@@ -32,10 +58,9 @@ module.exports = {
           {
             loader: 'css-loader',
             options: {
-              sourceMap: true,
               modules: true,
-              camelCase: true,
-              localIdentName: '[name]-[local]-[hash:base64:5]'
+              importLoaders: 1,
+              localIdentName: '[path]-[name]-[local]'
             }
           }
         ]
@@ -54,9 +79,14 @@ module.exports = {
   performance: {
     hints: false
   },
-  devtool: '#cheap-module-eval-source-map',
+  devtool: '#cheap-eval-source-map',
   devServer: {
+    hot: true,
     quiet: true
   },
-  plugins: [new FriendlyErrorsPlugin()]
+  plugins: [
+    new FriendlyErrorsPlugin(),
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NamedModulesPlugin()
+  ]
 }

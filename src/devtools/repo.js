@@ -4,6 +4,10 @@ import Snapshot from './domains/snapshot'
 import Events from './effects/events'
 
 class Repo extends Microcosm {
+  static defaults = {
+    batch: true
+  }
+
   setup({ bridge }) {
     this.addDomain('history', History)
     this.addDomain('snapshot', Snapshot)

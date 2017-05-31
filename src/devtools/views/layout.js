@@ -44,7 +44,7 @@ class Layout extends React.Component {
   }
 
   render() {
-    const { history, snapshot } = this.props
+    const { history } = this.props
     const { leftRail, rightRail } = this.state
 
     let status = `${history.size} Actions`
