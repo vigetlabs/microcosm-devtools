@@ -1,6 +1,7 @@
 /**
- * @fileoverview The background script runs all the time and serves as a central message
- * hub for each microcosm devtools (panel + proxy + backend) instance.
+ * @fileoverview The background script runs all the time and serves as
+ * a central message hub for each microcosm devtools (panel + proxy +
+ * backend) instance.
  */
 
 const ports = {}
@@ -76,6 +77,10 @@ function doublePipe (id, one, two) {
   console.log('tab ' + id + ' connected.')
 }
 
+/**
+ * This displays the Microcosm logo on the plugins bar next to the
+ * URL. It saturates the logo when Microcosm is detected
+ */
 chrome.runtime.onMessage.addListener((req, sender) => {
   if (sender.tab && req.microcosmDetected) {
     chrome.browserAction.setIcon({
