@@ -1,11 +1,6 @@
 var webpack = require('webpack')
 var alias = require('../alias')
 
-var bubleOptions = {
-  target: process.env.NODE_ENV === 'production' ? null : { chrome: 52 },
-  objectAssign: 'Object.assign'
-}
-
 module.exports = {
   entry: {
     hook: './src/hook.js',
@@ -26,16 +21,28 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.js$/,
-        exclude: /node_modules/,
-        use: [{ loader: 'babel-loader' }]
-      },
-      {
-        test: /\.(png|woff2)$/,
+        enforce: 'pre',
+        test: /\.jsx?$/,
+        include: [/src/, /shell/],
         use: [
           {
-            loader: 'url-loader',
-            options: { limit: 0 }
+            loader: 'eslint-loader',
+            options: {
+              cache: true
+            }
+          }
+        ]
+      },
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: [
+          {
+            loader: 'babel-loader',
+            options: {
+              cacheDirectory: '.babel-cache',
+              plugins: ['react-hot-loader/babel']
+            }
           }
         ]
       },
@@ -48,10 +55,19 @@ module.exports = {
           {
             loader: 'css-loader',
             options: {
-              sourceMap: true,
               modules: true,
-              camelCase: true
+              importLoaders: 1,
+              localIdentName: '[path]-[name]-[local]'
             }
+          }
+        ]
+      },
+      {
+        test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2)$/,
+        use: [
+          {
+            loader: 'url-loader',
+            options: { limit: 0 }
           }
         ]
       }
