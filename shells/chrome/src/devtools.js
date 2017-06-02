@@ -2,41 +2,43 @@
  * @fileoverview This script is called when the dev tools panel is activated.
  */
 
-import { connectBridge } from 'src/devtools'
+import { initDevTools } from 'src/devtools'
 import Bridge from 'src/bridge'
 
 initDevTools({
-  /**
-   * Inject backend, connect to background, and send back the bridge.
-   *
-   * @param {Function} cb
-   */
-  // 1. build and hook up window-to-Microcosm bridge
-  injectScript(chrome.runtime.getURL('build/backend.js'), () => {
-    // 2. connect to background to setup proxy
-    const port = chrome.runtime.connect({
-      name: '' + chrome.devtools.inspectedWindow.tabId
-    })
-    let disconnected = false
-    port.onDisconnect.addListener(() => {
-      disconnected = true
-    })
+  connect(callback) {
+    // 1. build and hook up window-to-Microcosm bridge
+    injectScript(chrome.runtime.getURL('build/backend.js'), () => {
+      // 2. connect to background to setup proxy
+      const port = chrome.runtime.connect({
+        name: '' + chrome.devtools.inspectedWindow.tabId
+      })
 
-    // 3. build devTools-to-window bridge
-    const bridge = new Bridge({
-      listen(fn) {
-        port.onMessage.addListener(fn)
-      },
-      send(data) {
-        if (!disconnected) {
-          port.postMessage(data)
+      let disconnected = false
+      port.onDisconnect.addListener(() => {
+        disconnected = true
+      })
+
+      // 3. build devTools-to-window bridge
+      const bridge = new Bridge({
+        listen(fn) {
+          port.onMessage.addListener(fn)
+        },
+        send(data) {
+          if (!disconnected) {
+            port.postMessage(data)
+          }
         }
-      }
-    })
+      })
 
-    // 4. wire up devTools-to-window bridge
-    connectBridge(bridge)
-  })
+      // 4. wire up devTools-to-window bridge
+      callback(bridge)
+    })
+  },
+
+  onReload(callback) {
+    chrome.devtools.network.onNavigated.addListener(callback)
+  }
 })
 
 /**

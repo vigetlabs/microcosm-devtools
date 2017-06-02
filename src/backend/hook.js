@@ -9,6 +9,10 @@
  * @param {Window} window
  */
 
+export function hasHook(window) {
+  return window.hasOwnProperty('__MICROCOSM_DEVTOOLS_GLOBAL_HOOK__')
+}
+
 export function installHook(window) {
   let listeners = {}
 
@@ -69,7 +73,7 @@ export function installHook(window) {
     }
   }
 
-  hook.once('init', repo => {
+  hook.on('init', repo => {
     hook.repo = repo
   })
 
