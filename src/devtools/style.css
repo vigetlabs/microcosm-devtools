@@ -4,6 +4,10 @@
   --z-top: 10;
 }
 
+body {
+  margin: 0;
+}
+
 :global(#app) {
   font-family: var(--font-system);
   font-size: 14px;

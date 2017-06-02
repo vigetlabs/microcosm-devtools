@@ -6,17 +6,23 @@ import Application from './presenters/application'
 
 import './style.css'
 
-export function connectBridge(bridge) {
-  let repo = new Repo({ bridge })
+export function initDevTools(shell) {
+  shell.connect(bridge => {
+    window.bridge = bridge
+    initApp()
+  })
+
+  shell.onReload(initApp)
+}
+
+export function initApp() {
+  let repo = new Repo({ bridge: window.bridge })
   let el = document.getElementById('app')
 
-  function render() {
-    DOM.render(<AppContainer><Application repo={repo} /></AppContainer>, el)
-  }
+  DOM.unmountComponentAtNode(el)
+  DOM.render(<AppContainer><Application repo={repo} /></AppContainer>, el)
+}
 
-  render()
-
-  if (module.hot) {
-    module.hot.accept(render)
-  }
+if (module.hot) {
+  module.hot.accept(initApp)
 }
