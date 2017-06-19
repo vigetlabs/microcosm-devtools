@@ -38,6 +38,7 @@ export function trackHistory(hook, bridge) {
     bridge.removeAllListeners(`toggle:${action.id}`)
     bridge.removeAllListeners(`remove:${action.id}`)
     bridge.removeAllListeners(`checkout:${action.id}`)
+    bridge.removeAllListeners(`detail:${action.id}`)
   })
 
   history.on('reconcile', function() {

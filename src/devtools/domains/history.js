@@ -39,15 +39,9 @@ class History {
     return { ...newHistory, list, focused }
   }
 
-  focus(_old, id) {
-    let focused = null
-    if (_old.focused === id) {
-      focused = _old.head
-    } else {
-      focused = id
-    }
-
-    return { ..._old, focused }
+  focus(old, id) {
+    let focused = id
+    return { ...old, focused }
   }
 
   register() {

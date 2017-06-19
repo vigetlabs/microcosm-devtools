@@ -24,11 +24,9 @@ class Layout extends React.Component {
       return null
     }
 
-    let { history } = this.props
-
     return (
       <div className={css.rail}>
-        <ActionList focused={history.focused} history={history} />
+        <ActionList history={this.props.history} />
       </div>
     )
   }
