@@ -7,11 +7,14 @@ class History {
       head: null,
       root: null,
       tree: {},
-      list: []
+      list: [],
+      focused: null
     }
   }
 
   reset(_old, newHistory) {
+    let focused = newHistory.head
+
     let list = []
     let cursor = newHistory.tree
     let parent = cursor
@@ -33,12 +36,24 @@ class History {
       }
     }
 
-    return { ...newHistory, list }
+    return { ...newHistory, list, focused }
+  }
+
+  focus(_old, id) {
+    let focused = null
+    if (_old.focused === id) {
+      focused = _old.head
+    } else {
+      focused = id
+    }
+
+    return { ..._old, focused }
   }
 
   register() {
     return {
-      [updateHistory]: this.reset
+      [updateHistory]: this.reset,
+      ['detail']: this.focus
     }
   }
 }

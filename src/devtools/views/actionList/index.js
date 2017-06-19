@@ -11,19 +11,19 @@ const ItemWrapper = withSend(function({ action, isFocused, head, send }) {
       isFocused={isFocused}
       head={head}
       key={action.id}
-      onClick={() => send('detail', action.id)}
+      onClick={() => send('detail', isFocused ? head : action.id)}
     />
   )
 })
 
 class ActionList extends React.Component {
   renderItem(action) {
-    let { head } = this.props.history
+    let { focused, head } = this.props.history
 
     return (
       <ItemWrapper
         action={action}
-        isFocused={this.props.focused === action.id}
+        isFocused={focused === action.id}
         head={head}
         key={action.id}
       />
