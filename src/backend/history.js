@@ -28,6 +28,10 @@ export function trackHistory(hook, bridge) {
 
       history.checkout(action)
     })
+
+    bridge.on(`detail:${action.id}`, () => {
+      bridge.send('snapshot', JSON.stringify(repo.archive.get(action)))
+    })
   })
 
   history.on('remove', action => {

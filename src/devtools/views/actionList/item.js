@@ -4,13 +4,16 @@ import ActionButton from 'microcosm/addons/action-button'
 import humanize from '../../utils/humanize'
 import css from './actionList.css'
 
-class ActionListItem extends React.Component {
+const stop = e => e.stopPropagation()
+
+class Item extends React.Component {
   itemClass() {
-    let { action, head } = this.props
+    let { action, head, isFocused } = this.props
 
     return classNames(css.item, {
       [css.head]: action.id == head,
-      [css.disabled]: action.disabled
+      [css.disabled]: action.disabled,
+      [css.focused]: isFocused
     })
   }
 
@@ -18,7 +21,7 @@ class ActionListItem extends React.Component {
     let { action } = this.props
 
     return (
-      <div className={this.itemClass()}>
+      <div className={this.itemClass()} onClick={this.props.onClick}>
         <span>
           {humanize(action.type)}
         </span>
@@ -28,6 +31,7 @@ class ActionListItem extends React.Component {
             action="checkout"
             value={action.id}
             className={css.checkout}
+            onClick={stop}
           >
             <span>checkout</span>
           </ActionButton>
@@ -36,6 +40,7 @@ class ActionListItem extends React.Component {
             action="toggle"
             value={action.id}
             className={action.disabled ? css.show : css.hide}
+            onClick={stop}
           >
             <span>{action.disabled ? 'enable' : 'disable'}</span>
           </ActionButton>
@@ -44,6 +49,7 @@ class ActionListItem extends React.Component {
             action="remove"
             value={action.id}
             className={css.remove}
+            onClick={stop}
           >
             <span>remove</span>
           </ActionButton>
@@ -53,4 +59,4 @@ class ActionListItem extends React.Component {
   }
 }
 
-export default ActionListItem
+export default Item

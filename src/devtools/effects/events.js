@@ -19,6 +19,7 @@ class Events {
 
     bridge.on('history:reconcile', repo.prepare(updateHistory))
     bridge.on('history:release', repo.prepare(updateSnapshot))
+    bridge.on('snapshot', repo.prepare(updateSnapshot))
   }
 
   teardown() {
@@ -45,13 +46,18 @@ class Events {
     this.bridge.send(`commit`)
   }
 
+  detail(repo, id) {
+    this.bridge.send(`detail:${id}`)
+  }
+
   register() {
     return {
       ['toggle']: this.toggle,
       ['remove']: this.remove,
       ['checkout']: this.checkout,
       ['revert']: this.revert,
-      ['commit']: this.commit
+      ['commit']: this.commit,
+      ['detail']: this.detail
     }
   }
 }

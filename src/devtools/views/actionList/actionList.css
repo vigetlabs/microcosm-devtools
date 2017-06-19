@@ -19,10 +19,15 @@
   background: #2a3346;
   box-shadow: inset 0 -1px 0 rgba(29, 30, 41, 0.97);
   color: #ccc;
+  cursor: pointer;
   display: flex;
   justify-content: space-between;
   padding: 8px 4px 8px 16px;
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+}
+
+.focused {
+  background: rgba(255, 255, 255, 0.1);
 }
 
 .head {
@@ -74,13 +79,17 @@
 
 .action:hover {
   border-color: rgba(255, 255, 255, 0.1);
-  opacity: 0.88
+  opacity: 0.88;
 }
 
 .action:hover > span {
   opacity: 1;
   transform: translate(-50%, 0) translateZ(0);
   transition-delay: 750ms;
+}
+
+.detail {
+  composes: action;
 }
 
 .checkout {
