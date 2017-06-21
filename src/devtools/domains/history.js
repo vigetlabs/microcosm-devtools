@@ -39,8 +39,7 @@ class History {
     return { ...newHistory, list, focused }
   }
 
-  focus(old, id) {
-    let focused = id
+  focus(old, focused) {
     return { ...old, focused }
   }
 
