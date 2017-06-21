@@ -1,4 +1,5 @@
 import { updateSnapshot } from '../actions/snapshot'
+// import { detail } from '../actions/history'
 
 class Snapshot {
   getInitialState() {

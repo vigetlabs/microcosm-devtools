@@ -11,3 +11,8 @@ export function updateHistory(history) {
     action.resolve(payload)
   }
 }
+
+export const detail = payload => {
+  console.log('in detail()')
+  return payload
+}

@@ -3,6 +3,7 @@ import ActionRegion from '../actionRegion'
 import Item from './item'
 import StickyBar from './stickyBar'
 import css from './actionList.css'
+// import { detail } from '../../actions/history'
 
 class ActionList extends React.Component {
   renderItem(action) {
