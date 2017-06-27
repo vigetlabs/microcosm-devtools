@@ -12,7 +12,4 @@ export function updateHistory(history) {
   }
 }
 
-export const detail = payload => {
-  console.log('in detail()')
-  return payload
-}
+export const detail = payload => payload

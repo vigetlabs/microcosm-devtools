@@ -30,7 +30,6 @@ export function trackHistory(hook, bridge) {
     })
 
     bridge.on(`detail:${action.id}`, () => {
-      console.log('bridge')
       bridge.send('snapshot', JSON.stringify(repo.archive.get(action)))
     })
   })
