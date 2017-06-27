@@ -1,14 +1,9 @@
 var FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
 var alias = require('../alias')
-var webpack = require('webpack')
 
 module.exports = {
   entry: {
-    devtools: [
-      'react-hot-loader/patch',
-      'react-dev-utils/webpackHotDevClient',
-      './src/devtools.js'
-    ],
+    devtools: ['./src/devtools.js'],
     backend: './src/backend.js',
     hook: './src/hook.js',
     target: './target/index.js'
@@ -43,8 +38,7 @@ module.exports = {
           {
             loader: 'babel-loader',
             options: {
-              cacheDirectory: '.babel-cache',
-              plugins: ['react-hot-loader/babel']
+              cacheDirectory: true
             }
           }
         ]
@@ -81,12 +75,7 @@ module.exports = {
   },
   devtool: '#cheap-eval-source-map',
   devServer: {
-    hot: true,
     quiet: true
   },
-  plugins: [
-    new FriendlyErrorsPlugin(),
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.NamedModulesPlugin()
-  ]
+  plugins: [new FriendlyErrorsPlugin()]
 }

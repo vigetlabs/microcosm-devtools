@@ -40,8 +40,7 @@ module.exports = {
           {
             loader: 'babel-loader',
             options: {
-              cacheDirectory: '.babel-cache',
-              plugins: ['react-hot-loader/babel']
+              cacheDirectory: true
             }
           }
         ]
