@@ -17,7 +17,6 @@ target.onload = () => {
             targetWindow.parent.addEventListener('message', evt => fn(evt.data))
           },
           send(data) {
-            console.log('devtools -> backend', data)
             targetWindow.postMessage(data, '*')
           }
         })
@@ -25,9 +24,6 @@ target.onload = () => {
         // 4. wire up devTools-to-window bridge
         callback(devToolsBridge)
       })
-    },
-    onReload(callback) {
-      target.onload = callback
     }
   })
 }

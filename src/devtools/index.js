@@ -11,8 +11,6 @@ export function initDevTools(shell) {
     window.bridge = bridge
     initApp()
   })
-
-  shell.onReload(initApp)
 }
 
 export function initApp() {

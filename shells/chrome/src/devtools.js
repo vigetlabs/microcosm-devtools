@@ -2,8 +2,8 @@
  * @fileoverview This script is called when the dev tools panel is activated.
  */
 
-import { initDevTools } from 'src/devtools'
-import Bridge from 'src/bridge'
+import { initDevTools } from '../../../src/devtools'
+import Bridge from '../../../src/bridge'
 
 initDevTools({
   connect(callback) {
@@ -34,10 +34,10 @@ initDevTools({
       // 4. wire up devTools-to-window bridge
       callback(bridge)
     })
-  },
 
-  onReload(callback) {
-    chrome.devtools.network.onNavigated.addListener(callback)
+    chrome.devtools.network.onNavigated.addListener(() =>
+      this.connect(callback)
+    )
   }
 })
 
