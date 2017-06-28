@@ -4,6 +4,8 @@
  * backend) instance.
  */
 
+/* eslint-disable no-console */
+
 const ports = {}
 
 chrome.runtime.onConnect.addListener(port => {
@@ -31,25 +33,29 @@ chrome.runtime.onConnect.addListener(port => {
   }
 })
 
-function isNumeric (str) {
+function isNumeric(str) {
   return +str + '' === str
 }
 
-function installProxy (tabId) {
-  chrome.tabs.executeScript(tabId, {
-    file: '/build/proxy.js'
-  }, function (res) {
-    if (!res) {
-      ports[tabId].devtools.postMessage('proxy-fail')
-    } else {
-      console.log('injected proxy to tab ' + tabId)
+function installProxy(tabId) {
+  chrome.tabs.executeScript(
+    tabId,
+    {
+      file: '/build/proxy.js'
+    },
+    function(res) {
+      if (!res) {
+        ports[tabId].devtools.postMessage('proxy-fail')
+      } else {
+        console.log('injected proxy to tab ' + tabId)
+      }
     }
-  })
+  )
 }
 
-function doublePipe (id, one, two) {
+function doublePipe(id, one, two) {
   one.onMessage.addListener(lOne)
-  function lOne (message) {
+  function lOne(message) {
     if (message.event === 'log') {
       return console.log('tab ' + id, message.payload)
     }
@@ -57,14 +63,14 @@ function doublePipe (id, one, two) {
     two.postMessage(message)
   }
   two.onMessage.addListener(lTwo)
-  function lTwo (message) {
+  function lTwo(message) {
     if (message.event === 'log') {
       return console.log('tab ' + id, message.payload)
     }
     console.log('backend -> devtools', message)
     one.postMessage(message)
   }
-  function shutdown () {
+  function shutdown() {
     console.log('tab ' + id + ' disconnected.')
     one.onMessage.removeListener(lOne)
     two.onMessage.removeListener(lTwo)
@@ -93,7 +99,9 @@ chrome.runtime.onMessage.addListener((req, sender) => {
     })
     chrome.browserAction.setPopup({
       tabId: sender.tab.id,
-      popup: req.devtoolsEnabled ? 'popups/enabled.html' : 'popups/disabled.html'
+      popup: req.devtoolsEnabled
+        ? 'popups/enabled.html'
+        : 'popups/disabled.html'
     })
   }
 })

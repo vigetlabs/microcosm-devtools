@@ -4,13 +4,13 @@
   "description": "Devtools for Microcosm",
   "main": "index.js",
   "scripts": {
-    "dev": "cd shells/dev && webpack-dev-server --no-info",
-    "dev:chrome": "cd shells/chrome && webpack --watch --hide-modules",
-    "lint": "eslint {src,shells/chrome/src,shells/dev/src}",
-    "build": "npm run lint && cd shells/chrome && NODE_ENV=production webpack --progress --hide-modules",
-    "zip": "rm -f chrome.zip && cd shells && zip -r ../chrome.zip chrome -x *src/* -x *webpack.config.js",
+    "dev": "webpack-dev-server --no-info --config shells/dev/webpack.config.js",
+    "dev:chrome": "webpack --watch --hide-modules --config shells/chrome/webpack.config.js",
+    "lint": "./bin/lint",
+    "format": "./bin/format",
+    "build": "./bin/build",
     "release": "npm run test && npm run build && npm run zip",
-    "test": "echo WRITE TESTS"
+    "test": "echo WRITE TESTS; exit 0"
   },
   "keywords": [
     "microcosm",
@@ -31,6 +31,7 @@
     "eslint-plugin-react": "^7.0.1",
     "file-loader": "^0.11.1",
     "friendly-errors-webpack-plugin": "^1.6.1",
+    "prettier": "^1.5.2",
     "react-dev-utils": "^3.0.0",
     "react-hot-loader": "3.0.0-beta.6",
     "style-loader": "^0.18.1",

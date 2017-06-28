@@ -1,0 +1,20 @@
+#!/bin/bash
+
+# Check our code base for inconsistencies in code formatting
+# and common mistakes.
+#
+# Run this command with:
+#   ./bin/lint
+
+PATH=$(yarn bin):$PATH
+
+# Check these files for mistakes:
+SRC=$(git ls-files | grep -v "^\." | grep ".js\$")
+
+# Prettier is an automated code formatter.
+# https://github.com/prettier/prettier
+prettier --semi false --single-quote --list-different $SRC
+
+# Eslint checks for common issues in JavaScript code.
+# http://eslint.org/
+eslint $SRC

@@ -63,10 +63,16 @@ class App extends Presenter {
     return (
       <main>
         <h1>This is a test</h1>
-        <p>Count: {this.model.count}</p>
+        <p>
+          Count: {this.model.count}
+        </p>
         <footer>
-          <ActionButton action={decrease} value={1}>Down</ActionButton>
-          <ActionButton action={increase} value={1}>Up</ActionButton>
+          <ActionButton action={decrease} value={1}>
+            Down
+          </ActionButton>
+          <ActionButton action={increase} value={1}>
+            Up
+          </ActionButton>
 
           <button onClick={() => this.send(eventuallyIncrease)}>
             Eventually Add

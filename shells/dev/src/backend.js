@@ -8,10 +8,12 @@ const bridge = new Bridge({
   send(data) {
     let tag = 'backend - ' + data.event
 
+    /* eslint-disable */
     console.groupCollapsed(tag)
     console.log('payload - ', data.payload)
     window.parent.postMessage(data, '*')
     console.groupEnd(tag)
+    /* eslint-enable */
   }
 })
 

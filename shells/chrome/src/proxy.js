@@ -15,20 +15,23 @@ port.onDisconnect.addListener(handleDisconnect)
 
 sendMessageToBackend('init')
 
-function sendMessageToBackend (payload) {
-  window.postMessage({
-    source: 'microcosm-devtools-proxy',
-    payload: payload
-  }, '*')
+function sendMessageToBackend(payload) {
+  window.postMessage(
+    {
+      source: 'microcosm-devtools-proxy',
+      payload: payload
+    },
+    '*'
+  )
 }
 
-function sendMessageToDevtools (e) {
+function sendMessageToDevtools(e) {
   if (e.data && e.data.source === 'microcosm-devtools-backend') {
     port.postMessage(e.data.payload)
   }
 }
 
-function handleDisconnect () {
+function handleDisconnect() {
   window.removeEventListener('message', sendMessageToDevtools)
   sendMessageToBackend('shutdown')
 }

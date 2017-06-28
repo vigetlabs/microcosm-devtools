@@ -18,7 +18,12 @@ export function initApp() {
   let el = document.getElementById('app')
 
   DOM.unmountComponentAtNode(el)
-  DOM.render(<AppContainer><Application repo={repo} /></AppContainer>, el)
+  DOM.render(
+    <AppContainer>
+      <Application repo={repo} />
+    </AppContainer>,
+    el
+  )
 }
 
 if (module.hot) {

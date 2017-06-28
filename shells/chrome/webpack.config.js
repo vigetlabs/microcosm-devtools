@@ -2,6 +2,8 @@ var webpack = require('webpack')
 var alias = require('../alias')
 
 module.exports = {
+  context: __dirname,
+
   entry: {
     hook: './src/hook.js',
     devtools: './src/devtools.js',

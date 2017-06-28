@@ -57,8 +57,10 @@ function injectScript(scriptName, cb) {
   `
   chrome.devtools.inspectedWindow.eval(src, function(res, err) {
     if (err) {
+      // eslint-disable-next-line
       console.log(err)
     }
+
     cb()
   })
 }

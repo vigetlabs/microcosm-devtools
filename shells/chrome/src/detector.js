@@ -12,10 +12,13 @@ window.addEventListener('message', e => {
 function detect(win) {
   // TODO: Poll until we detect a Microcosm. We need a check here.
   setTimeout(() => {
-    win.postMessage({
-      devtoolsEnabled: true,
-      microcosmDetected: true
-    }, '*')
+    win.postMessage(
+      {
+        devtoolsEnabled: true,
+        microcosmDetected: true
+      },
+      '*'
+    )
   }, 100)
 }
 

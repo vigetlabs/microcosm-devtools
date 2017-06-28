@@ -2,6 +2,8 @@ var FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
 var alias = require('../alias')
 
 module.exports = {
+  context: __dirname,
+
   entry: {
     devtools: ['./src/devtools.js'],
     backend: './src/backend.js',

@@ -10,11 +10,11 @@ class Events {
     this.bridge = bridge
 
     bridge.once('ready', version => {
-      console.log('Dev tools are ready.')
+      // TODO: Show version number in UI
     })
 
     bridge.once('proxy-fail', () => {
-      console.error('Proxy injection failed.')
+      // TODO: Signal error in UI
     })
 
     bridge.on('history:reconcile', repo.prepare(updateHistory))

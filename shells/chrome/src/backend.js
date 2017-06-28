@@ -7,26 +7,35 @@ import Bridge from 'src/bridge'
 
 window.addEventListener('message', handshake)
 
-function handshake (e) {
-  if (e.data.source === 'microcosm-devtools-proxy' && e.data.payload === 'init') {
+function handshake(e) {
+  if (
+    e.data.source === 'microcosm-devtools-proxy' &&
+    e.data.payload === 'init'
+  ) {
     window.removeEventListener('message', handshake)
 
     let listeners = []
     const bridge = new Bridge({
-      listen (fn) {
+      listen(fn) {
         var listener = evt => {
-          if (evt.data.source === 'microcosm-devtools-proxy' && evt.data.payload) {
+          if (
+            evt.data.source === 'microcosm-devtools-proxy' &&
+            evt.data.payload
+          ) {
             fn(evt.data.payload)
           }
         }
         window.addEventListener('message', listener)
         listeners.push(listener)
       },
-      send (data) {
-        window.postMessage({
-          source: 'microcosm-devtools-backend',
-          payload: data
-        }, '*')
+      send(data) {
+        window.postMessage(
+          {
+            source: 'microcosm-devtools-backend',
+            payload: data
+          },
+          '*'
+        )
       }
     })
 

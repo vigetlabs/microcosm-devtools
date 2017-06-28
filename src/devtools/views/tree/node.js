@@ -25,7 +25,11 @@ export default function Node({ action, x, y, index, head }) {
   let opacity = action.disabled ? '0.35' : '1'
 
   return (
-    <g id={'node-' + action.id} transform={`translate(${x},${y})`} opacity={opacity}>
+    <g
+      id={'node-' + action.id}
+      transform={`translate(${x},${y})`}
+      opacity={opacity}
+    >
       <circle r="10" opacity="0" />
       <circle r="4" fill={color} />
 

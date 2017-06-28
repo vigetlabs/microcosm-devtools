@@ -12,9 +12,7 @@ class Snapshot extends React.Component {
     return (
       <aside className={css.container}>
         <header className={css.header}>
-          <h2 className={css.title}>
-            State
-          </h2>
+          <h2 className={css.title}>State</h2>
         </header>
         <div className={css.body}>
           <Inspector data={data} theme={THEME} />
