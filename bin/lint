@@ -6,6 +6,8 @@
 # Run this command with:
 #   ./bin/lint
 
+set -e
+
 PATH=$(yarn bin):$PATH
 
 # Check these files for mistakes:
