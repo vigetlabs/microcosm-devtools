@@ -2,7 +2,7 @@ export function trackHistory(hook, bridge) {
   const repo = hook.repo
   const history = repo.history
 
-  history.toArray().forEach(function (action) {
+  history.toArray().forEach(function(action) {
     registerAction(bridge, repo, action)
   })
 
@@ -10,7 +10,7 @@ export function trackHistory(hook, bridge) {
     registerAction(bridge, repo, action)
   })
 
-  history.on('remove', function (action) {
+  history.on('remove', function(action) {
     deregisterAction(bridge, action)
   })
 
