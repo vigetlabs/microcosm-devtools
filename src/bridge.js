@@ -17,10 +17,7 @@ export default class Bridge extends EventEmitter {
   }
 
   send(event, payload) {
-    this.wall.send({
-      event,
-      payload
-    })
+    this.wall.send({ event, payload: JSON.stringify(payload) })
   }
 
   log(message) {
