@@ -77,7 +77,8 @@ module.exports = {
   },
   devtool: '#cheap-eval-source-map',
   devServer: {
-    quiet: true
+    quiet: true,
+    contentBase: __dirname
   },
   plugins: [new FriendlyErrorsPlugin()]
 }
