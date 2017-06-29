@@ -22,7 +22,7 @@ class Item extends React.Component {
 
     return (
       <div className={this.itemClass()} onClick={this.props.onClick}>
-        <span>
+        <span className={css.name}>
           {humanize(action.type)}
         </span>
 
