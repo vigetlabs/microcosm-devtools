@@ -1,5 +1,6 @@
 import React from 'react'
 import humanize from '../../utils/humanize'
+import ActionButton from 'microcosm/addons/action-button'
 
 function fill({ status }) {
   switch (status) {
@@ -25,10 +26,13 @@ export default function Node({ action, x, y, index, head }) {
   let opacity = action.disabled ? '0.35' : '1'
 
   return (
-    <g
+    <ActionButton
       id={'node-' + action.id}
       transform={`translate(${x},${y})`}
       opacity={opacity}
+      action="checkout"
+      value={action.id}
+      tag="g"
     >
       <circle r="10" opacity="0" />
       <circle r="4" fill={color} />
@@ -39,15 +43,16 @@ export default function Node({ action, x, y, index, head }) {
       <text
         x={offsetX + 8}
         y={offsetY}
-        fontSize="13"
+        fontSize="10"
         textAnchor="start"
+        fontWeight="300"
         fill={action.id == head ? '#fdd54d' : '#eee'}
         letterSpacing="0.05em"
         dominantBaseline="middle"
       >
         {humanize(action.type)}
       </text>
-    </g>
+    </ActionButton>
   )
 }
 

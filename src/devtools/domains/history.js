@@ -12,8 +12,8 @@ class History {
     }
   }
 
-  reset(_old, newHistory) {
-    let focused = newHistory.head
+  reset(old, newHistory) {
+    let focused = old.focused === old.head ? newHistory.head : old.focused
 
     let list = []
     let cursor = newHistory.tree

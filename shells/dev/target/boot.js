@@ -88,7 +88,7 @@ class App extends Presenter {
 }
 
 export default function render(el) {
-  let repo = new Repo({ maxHistory: Infinity })
+  let repo = new Repo({ devtools: true, debug: true })
 
   DOM.render(<App repo={repo} />, document.querySelector(el))
 

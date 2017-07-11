@@ -7,13 +7,42 @@ class TreeVisual extends React.Component {
   static defaultProps = {
     height: 250,
     width: 350,
-    spacing: 30
+    spacing: 45
+  }
+
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      width: props.width,
+      height: props.height
+    }
   }
 
   _width = 0
 
+  componentDidMount() {
+    this.recalculateDimensions()
+
+    window.addEventListener('resize', this.recalculateDimensions)
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.recalculateDimensions)
+  }
+
+  recalculateDimensions = () => {
+    if (this.frame) {
+      this.setState({
+        width: this.frame.offsetWidth,
+        height: this.frame.offsetHeight
+      })
+    }
+  }
+
   get width() {
-    const { spacing, width, history } = this.props
+    const { spacing, history } = this.props
+    const { width } = this.state
 
     this._width = Math.max(this._width, width + history.size * spacing)
 
@@ -29,11 +58,9 @@ class TreeVisual extends React.Component {
   }
 
   getTree(history) {
-    const { height } = this.props
-
     return Tree({
       data: history.tree,
-      height: height,
+      height: this.state.height - this.props.spacing * 2,
       width: this.width
     })
   }
@@ -51,13 +78,14 @@ class TreeVisual extends React.Component {
   }
 
   render() {
-    const { history, height } = this.props
+    const { history } = this.props
+    const { height } = this.state
 
     // Leave plenty of room for labels
     let width = this.width + 200
 
     return (
-      <div className={css.container}>
+      <div className={css.container} ref={el => (this.frame = el)}>
         <svg className={css.graphic} width={width} height={height}>
           {history.size > 0 ? this.renderTree() : this.renderEmpty()}
         </svg>
@@ -70,12 +98,12 @@ class TreeVisual extends React.Component {
   }
 
   renderTree() {
-    const { history } = this.props
+    const { history, spacing } = this.props
 
     let tree = this.getTree(history)
 
     return (
-      <g transform={`translate(0,-10)`}>
+      <g transform={`translate(0, ${spacing})`}>
         <g fill="none" stroke="rgba(125, 225, 255, 0.4)">
           {tree.curves.map(this.getCurve)}
         </g>

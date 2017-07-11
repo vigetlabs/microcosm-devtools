@@ -1,5 +1,5 @@
 import React from 'react'
-import Snapshot from './snapshot'
+import RightRail from './right-rail'
 import Tree from './tree'
 import ActionList from './actionList'
 import Header from './header'
@@ -31,18 +31,6 @@ class Layout extends React.Component {
     )
   }
 
-  renderRightRail() {
-    if (!this.state.rightRail) {
-      return null
-    }
-
-    return (
-      <div className={css.rail}>
-        <Snapshot data={this.props.snapshot} />
-      </div>
-    )
-  }
-
   render() {
     const { history } = this.props
     const { leftRail, rightRail } = this.state
@@ -64,7 +52,7 @@ class Layout extends React.Component {
 
           <Tree history={history} />
 
-          {this.renderRightRail()}
+          <RightRail open={rightRail} />
         </main>
       </div>
     )
