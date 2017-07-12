@@ -2063,6 +2063,10 @@ form-data@~2.1.1:
     combined-stream "^1.0.5"
     mime-types "^2.1.12"
 
+form-serialize@^0.7.2:
+  version "0.7.2"
+  resolved "https://registry.yarnpkg.com/form-serialize/-/form-serialize-0.7.2.tgz#b0a2ff0c22026fb6d3d15c9d33f6de6a432e4732"
+
 forwarded@~0.1.0:
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/forwarded/-/forwarded-0.1.0.tgz#19ef9874c4ae1c297bcf078fde63a09b66a84363"
@@ -2852,6 +2856,12 @@ merge-descriptors@1.0.1:
 methods@~1.1.2:
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/methods/-/methods-1.1.2.tgz#5529a4d67654134edcc5266656835b0f851afcee"
+
+microcosm@12.9.0-beta3:
+  version "12.9.0-beta3"
+  resolved "https://registry.yarnpkg.com/microcosm/-/microcosm-12.9.0-beta3.tgz#4a9735d1284e0dfd3f3f93b951fbfca802136a81"
+  dependencies:
+    form-serialize "^0.7.2"
 
 micromatch@^2.1.5, micromatch@^2.3.11:
   version "2.3.11"
