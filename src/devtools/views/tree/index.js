@@ -7,7 +7,7 @@ class TreeVisual extends React.Component {
   static defaultProps = {
     height: 250,
     width: 350,
-    spacing: 45
+    spacing: 40
   }
 
   constructor(props) {
@@ -41,10 +41,15 @@ class TreeVisual extends React.Component {
   }
 
   get width() {
-    const { spacing, history } = this.props
-    const { width } = this.state
+    const { history } = this.props
 
-    this._width = Math.max(this._width, width + history.size * spacing)
+    let lengths = history.list.map(function (action) {
+      return action.type.length * 3
+    })
+
+    let longestAction = Math.max(20, ...lengths)
+
+    this._width = Math.max(this._width, history.size * longestAction)
 
     return this._width
   }
