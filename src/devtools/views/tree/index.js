@@ -43,7 +43,7 @@ class TreeVisual extends React.Component {
   get width() {
     const { history } = this.props
 
-    let lengths = history.list.map(function (action) {
+    let lengths = history.list.map(function(action) {
       return action.type.length * 3
     })
 
