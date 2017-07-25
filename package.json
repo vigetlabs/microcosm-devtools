@@ -43,7 +43,7 @@
   "dependencies": {
     "circular-json-es6": "^2.0.1",
     "classnames": "^2.2.5",
-    "microcosm": "12.9.0-beta4",
+    "microcosm": "^12.9.0",
     "paths-js": "^0.4.5",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
