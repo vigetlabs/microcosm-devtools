@@ -31,10 +31,10 @@ Until we ship to the Chrome app store, this is pretty low level:
 3. `npm run dev`
 4. A plain shell with a test app will be available at `http://localhost:8080`.
 
-### License
+## License
 
 [MIT](http://opensource.org/licenses/MIT)
 
-### Credit where due
+## Credit where due
 
 This is based heavily on the [vue-devtools](https://github.com/vuejs/vue-devtools). Thanks Vue.js for writing great stuff!
