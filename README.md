@@ -1,12 +1,18 @@
 # Microcosm DevTools
 
-A Chrome extension for inspecting the inner workings of Microcosm.
+Instantiate your Microcosm in debug mode to inspect its inner
+workings.
+
+```javascript
+let repo = new Microcosm({ debug: true })
+```
 
 ![Demo](./assets/screenshot.png)
 
 ## Requirements
 
-Microcosm devtools require version 12.9.0 of Microcosm or higher.
+1. Microcosm 12.9.0 or higher
+2. Chrome
 
 ## Installation
 
@@ -18,13 +24,6 @@ Until we ship to the Chrome app store, this is pretty low level:
 4. Open Chrome extension page
 5. Check "developer mode"
 6. Click "load unpacked extension", and choose `shells/chrome`.
-
-Then verify you are running at least Microcosm 12.9.0, then install
-the hook when you instantiate your Microcosm with:
-
-```javascript
-let repo = new Microcosm({ debug: true }))
-```
 
 ## Contributing
 
