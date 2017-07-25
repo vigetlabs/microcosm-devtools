@@ -1,5 +1,3 @@
-![Logo](./assets/microcosm-extension-logo.png)
-
 # Microcosm DevTools
 
 Inspect the inner workings of your Microcosm.
