@@ -9,8 +9,9 @@
     "lint": "./bin/lint",
     "format": "./bin/format",
     "build": "./bin/build",
-    "release": "npm run test && npm run build && npm run zip",
-    "test": "echo WRITE TESTS; exit 0"
+    "test": "echo WRITE TESTS; exit 0",
+    "zip": "cd shells && zip -r -FS ../dist/chrome.zip chrome -x *src/* -x *webpack.config.js",
+    "release": "npm run test && npm run build && npm run zip"
   },
   "keywords": [
     "microcosm",
