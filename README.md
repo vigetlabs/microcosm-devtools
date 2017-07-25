@@ -1,7 +1,6 @@
 # Microcosm DevTools
 
-Instantiate your Microcosm in debug mode to inspect its inner
-workings.
+Inspect the inner workings of your Microcosm.
 
 ```javascript
 let repo = new Microcosm({ debug: true })
