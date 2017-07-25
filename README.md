@@ -4,6 +4,10 @@ A Chrome extension for inspecting the inner workings of Microcosm.
 
 ![Demo](./assets/screenshot.png)
 
+## Requirements
+
+Microcosm devtools require version 12.9.0 of Microcosm or higher.
+
 ## Installation
 
 Until we ship to the Chrome app store, this is pretty low level:
@@ -16,14 +20,10 @@ Until we ship to the Chrome app store, this is pretty low level:
 6. Click "load unpacked extension", and choose `shells/chrome`.
 
 Then verify you are running at least Microcosm 12.9.0, then install
-the hook with:
+the hook when you instantiate your Microcosm with:
 
 ```javascript
-let hook = window.__MICROCOSM_DEVTOOLS_GLOBAL_HOOK__
-
-if (hook) {
-  hook.emit('init', repo)
-}
+let repo = new Microcosm({ debug: true }))
 ```
 
 ## Contributing
