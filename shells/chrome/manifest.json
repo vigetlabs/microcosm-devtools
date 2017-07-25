@@ -1,7 +1,7 @@
 {
   "name": "Microcosm Devtools",
-  "version": "0.0.0",
-  "description": "Chrome devtools extension for debugging Microcosm applications.",
+  "version": "0.0.1",
+  "description": "Debug your Microcosm app.",
   "manifest_version": 2,
   "icons": {
     "16": "icons/16.png",

@@ -58,7 +58,7 @@ function registerAction(bridge, repo, action) {
   })
 
   bridge.on(`detail:${action.id}`, () => {
-    bridge.send('snapshot', repo.archive.get(action))
+    bridge.send('snapshot', repo.recall(action))
   })
 }
 
