@@ -71,7 +71,9 @@ class TreeVisual extends React.Component {
   }
 
   getCurve(curve, i) {
-    return <path key={i} d={curve.connector.path.print()} />
+    return (
+      <path key={i} d={curve.connector.path.print()} strokeDasharray="2 2" />
+    )
   }
 
   getNode({ point, item }, i) {

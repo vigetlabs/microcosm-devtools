@@ -5,6 +5,7 @@ import Events from './effects/events'
 
 class Repo extends Microcosm {
   static defaults = {
+    debug: true,
     batch: true
   }
 

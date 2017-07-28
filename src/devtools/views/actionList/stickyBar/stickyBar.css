@@ -1,20 +1,28 @@
 .container {
-  box-shadow: inset 0 -1px 3px rgba(0, 0, 0, 0.06);
-  border-bottom: 1px solid rgba(31, 32, 47, 0.97);
+  background: rgba(0, 0, 0, 0.3);
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
   display: flex;
   flex-shrink: 0;
-  width: 100%;
+  padding: 0 4px;
 }
 
 .action {
-  border: 0;
+  background-color: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 4px;
   cursor: pointer;
-  line-height: 45px;
+  color: rgba(255, 255, 255, 0.54);
+  margin: 8px 4px;
+  padding: 5px 14px;
   text-align: center;
-  width: 50%;
   transition: 0.15s all;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  transition: 0.3s all;
 }
 
 .action:hover {
   background-color: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.88);
 }

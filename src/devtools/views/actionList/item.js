@@ -21,7 +21,7 @@ class Item extends React.Component {
     let { action } = this.props
 
     return (
-      <div className={this.itemClass()} onClick={this.props.onClick}>
+      <div className={this.itemClass()}>
         <span className={css.name}>
           {humanize(action.type)}
         </span>

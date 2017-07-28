@@ -25,11 +25,10 @@ class ActionList extends React.Component {
 
     return (
       <div className={css.container}>
-        <StickyBar />
-
         <div className={css.list}>
           {reverse.map(this.renderItem, this)}
         </div>
+        <StickyBar />
       </div>
     )
   }
