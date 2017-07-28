@@ -39,7 +39,7 @@ export default function Node({ action, x, y, index, head }) {
     >
       <circle r="2" fill={color} stroke="transparent" strokeWidth="5" />
 
-      <line x2={offsetX} y2={offsetY} stroke="transparent" strokeWidth="5"/>
+      <line x2={offsetX} y2={offsetY} stroke="transparent" strokeWidth="5" />
       <line x2={offsetX} y2={offsetY} stroke={color} />
 
       <circle cx={offsetX} cy={offsetY} r="2" fill={color} />
