@@ -4,7 +4,7 @@
   "description": "Devtools for Microcosm",
   "main": "index.js",
   "scripts": {
-    "dev": "webpack-dev-server --no-info --config shells/dev/webpack.config.js",
+    "dev": "webpack-dev-server --config shells/dev/webpack.config.js",
     "dev:chrome": "webpack --watch --hide-modules --config shells/chrome/webpack.config.js",
     "lint": "./bin/lint",
     "format": "./bin/format",
@@ -22,7 +22,7 @@
     "babel-core": "^6.24.1",
     "babel-eslint": "^7.2.3",
     "babel-loader": "^7.0.0",
-    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-env": "^1.6.0",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-2": "^6.24.1",
     "css-loader": "^0.28.4",
