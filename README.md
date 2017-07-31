@@ -15,7 +15,13 @@ let repo = new Microcosm({ debug: true })
 
 ## Installation
 
-Until we ship to the Chrome app store, this is pretty low level:
+Checkout the Chrome Extension listing:
+
+https://chrome.google.com/webstore/detail/ialgbdjboefngidjpgnjnbijdicaonph
+
+
+This listing is private until we ship a 1.0. If you would like to run
+the project locally:
 
 1. Clone this repo
 2. `npm install` (Or `yarn install` if you are using yarn as the package manager)
