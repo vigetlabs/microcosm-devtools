@@ -31,8 +31,8 @@ class RightRail extends Presenter {
           <header className={css.header}>
             <h2 className={css.title}>State</h2>
           </header>
-          <div className={css.body}>
-            <DataView data={snapshot} />
+          <div className={css.well}>
+            <DataView data={snapshot} hideRoot />
           </div>
         </section>
 

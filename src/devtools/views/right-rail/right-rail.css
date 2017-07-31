@@ -1,8 +1,8 @@
 .container {
   background: linear-gradient(#ffffff 70%, #f9f9f9 100%);
-  box-shadow: 0 0 3px rgba(0, 0, 0, 0.06);
   flex-basis: 25%;
   flex-shrink: 0;
+  font-size: 12px;
   height: 100%;
   max-width: 320px;
   min-width: 200px;
@@ -10,14 +10,21 @@
 }
 
 .header {
-  background: #f5f5f5;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-  box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.1);
-  padding: 8px;
+  align-items: center;
+  background-color: #f3f3f3;
+  border-bottom: 1px solid transparent;
+  border-top: 1px solid #dadada;
+  display: flex;
+  height: 24px;
+  overflow: hidden;
+  padding: 0 5px;
+  position: relative;
+  white-space: nowrap;
+  margin-top: -1px;
 }
 
-.body {
-  padding: 16px;
+.well {
+  border-top: 1px solid #dadada;
 }
 
 .section {
@@ -26,24 +33,21 @@
 }
 
 .title {
-  font-size: 10px;
-  font-weight: 500;
-  letter-spacing: 0.12em;
-  line-height: 16px;
-  margin: 0;
-  text-transform: uppercase;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 0;
+  margin: 2px 0 0 2px;
 }
 
 .subtitle {
   font-size: 10px;
   font-weight: 500;
-  letter-spacing: 0.12em;
   line-height: 16px;
   margin: 0 0 12px;
-  text-transform: uppercase;
 }
 
 .revisions {
+  border-top: 1px solid #dadada;
   list-style: none;
   margin: 0;
   padding: 0;
@@ -52,13 +56,12 @@
 
 .revisions > li {
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-  padding: 8px;
   margin: 0 0 8px 0;
 }
 
-.payload {
-  background: rgba(0, 0, 0, 0.05);
-  padding: 8px;
+.revision {
+  padding: 4px 8px 0;
+  margin-bottom: -8px;
 }
 
 .table {

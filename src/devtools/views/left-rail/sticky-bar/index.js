@@ -1,6 +1,6 @@
 import React from 'react'
 import ActionButton from 'microcosm/addons/action-button'
-import css from './stickyBar.css'
+import css from './sticky-bar.css'
 
 export default function StickyBar() {
   return (

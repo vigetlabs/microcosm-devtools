@@ -2,28 +2,12 @@ import React from 'react'
 import humanize from '../../utils/humanize'
 import ActionButton from 'microcosm/addons/action-button'
 import css from './tree.css'
-
-function fill({ status }) {
-  switch (status) {
-    case 'inactive':
-      return '#ccc'
-    case 'open':
-      return '#fe4'
-    case 'update':
-      return '#fe4'
-    case 'resolve':
-      return '#7f9'
-    case 'reject':
-      return '#f55'
-    case 'cancelled':
-      return '#445'
-  }
-}
+import colors from '../../colors'
 
 export default function Node({ action, x, y, index, head }) {
   let offsetY = index % 2 ? 22 : -22
   let offsetX = 17
-  let color = fill(action)
+  let color = colors[action.status]
   let opacity = action.disabled ? '0.35' : '1'
   let label = humanize(action.type)
 

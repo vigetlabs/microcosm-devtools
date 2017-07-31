@@ -1,17 +1,23 @@
 import React from 'react'
-import ActionRegion from '../actionRegion'
+import ActionRegion from './action-region'
+import Presenter from 'microcosm/addons/presenter'
 import Item from './item'
-import StickyBar from './stickyBar'
+import StickyBar from './sticky-bar'
 import css from './left-rail.css'
 
-class LeftRail extends React.Component {
+class ActionList extends Presenter {
   static defaultProps = {
-    className: '',
     open: true
   }
 
+  getModel() {
+    return {
+      history: state => state.history
+    }
+  }
+
   renderItem(action) {
-    let { focused, head } = this.props.history
+    let { focused, head } = this.model.history
 
     let isFocused = focused === action.id
     let payload = isFocused ? head : action.id
@@ -24,25 +30,23 @@ class LeftRail extends React.Component {
   }
 
   render() {
-    const { history, open } = this.props
-    const { list } = history
+    const { open } = this.props
+    const { history } = this.model
 
     if (!open) {
       return null
     }
 
-    let reverse = list.concat().reverse()
-
     return (
-      <aside className={css.container}>
-        <StickyBar />
-
+      <div className={css.container}>
         <div className={css.list}>
-          {reverse.map(this.renderItem, this)}
+          {history.list.map(this.renderItem, this).reverse()}
         </div>
-      </aside>
+
+        <StickyBar />
+      </div>
     )
   }
 }
 
-export default LeftRail
+export default ActionList

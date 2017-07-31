@@ -1,6 +1,12 @@
 .container {
-  background: #25253a;
-  box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.12);
+  background: linear-gradient(
+      90deg,
+      transparent 7px,
+      rgba(151, 151, 212, 0.12) 8px
+    ),
+    linear-gradient(180deg, transparent 7px, rgba(151, 151, 212, 0.12) 8px),
+    #1d1d2d;
+  background-size: 8px 8px;
   overflow: auto;
   padding: 0 40px;
   flex-grow: 1;
@@ -23,7 +29,7 @@
   transition: 0.3s all;
 }
 
-.clipping:hover {
+.node:hover .clipping {
   fill: rgba(200, 200, 255, 0.05);
   stroke-opacity: 0.4;
   transition: 0.1s all;

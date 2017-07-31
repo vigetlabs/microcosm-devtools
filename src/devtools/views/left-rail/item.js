@@ -3,6 +3,7 @@ import classNames from 'classnames'
 import ActionButton from 'microcosm/addons/action-button'
 import humanize from '../../utils/humanize'
 import css from './left-rail.css'
+import colors from '../../colors'
 
 const stop = e => e.stopPropagation()
 
@@ -21,9 +22,9 @@ class Item extends React.Component {
     let { action } = this.props
 
     return (
-      <div className={this.itemClass()} onClick={this.props.onClick}>
+      <div className={this.itemClass()}>
         <span className={css.name}>
-          {humanize(action.type)}
+          <span className={css.emblem} style={{ color: colors[action.status] }} /> {humanize(action.type)}
         </span>
 
         <span className={css.actions}>
