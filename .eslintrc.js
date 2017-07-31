@@ -28,9 +28,9 @@ module.exports = {
   rules: {
     semi: [1, 'never'],
     'comma-dangle': [2, 'never'],
-    'no-console': 'warn',
+    'no-console': 0,
     'no-debugger': isIntegration ? 'error' : 'warn',
-    'no-unused-vars': [2, { args: 'none' }],
+    'no-unused-vars': [1, { args: 'none' }],
     'react/jsx-equals-spacing': ['warn', 'never'],
     'react/jsx-no-duplicate-props': ['warn', { ignoreCase: true }],
     'react/jsx-no-undef': 'error',
