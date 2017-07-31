@@ -40,15 +40,12 @@
     "webpack-dev-server": "^2.4.5"
   },
   "dependencies": {
-    "babel-preset-env": "^1.6.0",
     "circular-json-es6": "^2.0.1",
     "classnames": "^2.2.5",
-    "d3-scale": "^1.0.6",
     "microcosm": "^12.9.0",
     "paths-js": "^0.4.5",
     "react": "^16.0.0-beta.2",
     "react-dom": "^16.0.0-beta.2",
-    "react-inspector": "^2.0.0",
     "react-json-tree": "^0.10.9"
   }
 }
