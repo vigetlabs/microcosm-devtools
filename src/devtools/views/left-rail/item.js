@@ -24,7 +24,11 @@ class Item extends React.Component {
     return (
       <div className={this.itemClass()}>
         <span className={css.name}>
-          <span className={css.emblem} style={{ color: colors[action.status] }} /> {humanize(action.type)}
+          <span
+            className={css.emblem}
+            style={{ color: colors[action.status] }}
+          />{' '}
+          {humanize(action.type)}
         </span>
 
         <span className={css.actions}>
