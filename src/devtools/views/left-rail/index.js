@@ -5,9 +5,16 @@ import Item from './item'
 import StickyBar from './sticky-bar'
 import css from './left-rail.css'
 
+let startX
+let startWidth
+
 class ActionList extends Presenter {
   static defaultProps = {
     open: true
+  }
+
+  state = {
+    paneWidth: 0.25 * window.innerWidth
   }
 
   getModel() {
@@ -29,21 +36,50 @@ class ActionList extends Presenter {
     )
   }
 
+  initDrag = e => {
+    startX = e.clientX
+    startWidth = this.state.paneWidth
+
+    document.documentElement.addEventListener('mousemove', this.onDrag, false)
+    document.documentElement.addEventListener('mouseup', this.stopDrag, false)
+  }
+
+  onDrag = e => {
+    this.setState({
+      paneWidth: startWidth + (e.clientX - startX)
+    })
+  }
+
+  stopDrag = e => {
+    document.documentElement.removeEventListener(
+      'mousemove',
+      this.onDrag,
+      false
+    )
+    document.documentElement.removeEventListener(
+      'mouseup',
+      this.stopDrag,
+      false
+    )
+  }
+
   render() {
     const { open } = this.props
     const { history } = this.model
+    const { paneWidth } = this.state
 
     if (!open) {
       return null
     }
 
     return (
-      <div className={css.container}>
+      <div className={css.container} style={{ width: paneWidth + 'px' }}>
         <div className={css.list}>
           {history.list.map(this.renderItem, this).reverse()}
         </div>
 
         <StickyBar />
+        <div className={css.resizer} onMouseDown={this.initDrag} />
       </div>
     )
   }
