@@ -1,11 +1,9 @@
 .container {
   background: linear-gradient(#ffffff 70%, #f9f9f9 100%);
-  flex-basis: 25%;
-  flex-shrink: 0;
   font-size: 12px;
   height: 100%;
-  max-width: 320px;
   min-width: 200px;
+  max-width: 500px;
   overflow: auto;
 }
 
@@ -83,4 +81,14 @@
   text-align: left;
   width: 100%;
   vertical-align: top;
+}
+
+.resizer {
+  background: transparent;
+  cursor: col-resize;
+  height: 100%;
+  float: left;
+  width: 4px;
+  user-select: none;
+  z-index: 2;
 }

@@ -5,11 +5,10 @@
   border-right: 1px solid rgba(0, 0, 0, 0.61);
   color: #eee;
   display: flex;
-  flex-basis: 25%;
   flex-direction: column;
   flex-shrink: 0;
   height: 100%;
-  max-width: 320px;
+  max-width: 500px;
   min-width: 200px;
   position: relative;
 }
@@ -156,4 +155,15 @@
 .remove {
   composes: action;
   background-image: url('../../assets/delete.svg');
+}
+
+.resizer {
+  background: transparent;
+  cursor: col-resize;
+  height: 100%;
+  position: absolute;
+  right: 0;
+  user-select: none;
+  width: 4px;
+  z-index: 2;
 }
