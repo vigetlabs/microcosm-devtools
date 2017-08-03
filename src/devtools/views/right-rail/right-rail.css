@@ -1,10 +1,7 @@
-.container {
+.pane {
   background: linear-gradient(#ffffff 70%, #f9f9f9 100%);
   font-size: 12px;
   height: 100%;
-  min-width: 200px;
-  max-width: 500px;
-  overflow: auto;
 }
 
 .header {
@@ -81,14 +78,4 @@
   text-align: left;
   width: 100%;
   vertical-align: top;
-}
-
-.resizer {
-  background: transparent;
-  cursor: col-resize;
-  height: 100%;
-  float: left;
-  width: 5px;
-  user-select: none;
-  z-index: 2;
 }
