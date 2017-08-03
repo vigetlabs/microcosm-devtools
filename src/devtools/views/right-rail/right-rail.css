@@ -88,7 +88,7 @@
   cursor: col-resize;
   height: 100%;
   float: left;
-  width: 4px;
+  width: 5px;
   user-select: none;
   z-index: 2;
 }
