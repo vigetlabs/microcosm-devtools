@@ -61,7 +61,10 @@ class RightRail extends Presenter {
     }
 
     return (
-      <aside className={css.container} style={{ width: paneWidth + 'px' }}>
+      <aside
+        className={css.container}
+        style={{ 'min-width': paneWidth + 'px' }}
+      >
         <div className={css.resizer} onMouseDown={this.initDrag} />
 
         <section>
