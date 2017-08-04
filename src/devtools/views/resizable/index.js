@@ -10,6 +10,7 @@ class Resizable extends Component {
   }
 
   initDrag = e => {
+    this.dragging = true
     startX = e.clientX
     startWidth = this.state.paneWidth
 
@@ -18,17 +19,18 @@ class Resizable extends Component {
   }
 
   onDrag = e => {
-    this.setState({
-      paneWidth:
-        this.props.handlePosition === 'left'
-          ? Math.min(startWidth - (e.clientX - startX), this.props.maxWidth)
-          : Math.min(startWidth + (e.clientX - startX), this.props.maxWidth)
-    })
+    if (this.dragging) {
+      this.setState({
+        paneWidth:
+          this.props.handlePosition === 'left'
+            ? Math.min(startWidth - (e.clientX - startX), this.props.maxWidth)
+            : Math.min(startWidth + (e.clientX - startX), this.props.maxWidth)
+      })
+    }
   }
 
   stopDrag = e => {
-    document.documentElement.removeEventListener('mousemove', this.onDrag)
-    document.documentElement.removeEventListener('mouseup', this.stopDrag)
+    this.dragging = false
   }
 
   render() {
